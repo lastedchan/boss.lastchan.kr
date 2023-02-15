@@ -1,4 +1,4 @@
-export const bossList = [
+export const BOSS_LIST = [
   "발록",
   "자쿰",
   "혼테일",
@@ -32,10 +32,14 @@ export const bossList = [
   "감시자 칼로스",
 ];
 export const ORDER_BOSS = [14, 0, 1, 10, 3, 21, 22, 4, 5, 6, 7, 8, 2, 9, 11, 12, 13, 15, 29, 19, 23, 26, 24, 27, 25, 28, 30];
-export const ORDER_CLEARBOARD = [1, 10, 3, 21, 22, 4, 5, 6, 7, 8, 2, 9, 11, 12, 13, 15, 29, 19, 23, 26, 24, 27, 25, 28, 30];
 
-export const FILENAME_ICON = ".0.png";
-export const FILENAME_BTN = ".btBoss.normal.0.png";
-export const FILENAME_BTN_MOUSEOVER = ".btBoss.mouseOver.0.png";
-export const FILENAME_BTN_CHECKED = ".btBoss.checked.0.png";
-export const FILENAME_BACKGROUND = ".mob.png";
+export const BOSS = {
+  ORDER: [14, 0, 1, 10, 3, 21, 22, 4, 5, 6, 7, 8, 2, 9, 11, 12, 13, 15, 29, 19, 23, 26, 24, 27, 25, 28, 30],
+  PATHNAME: "/images/boss/",
+  BACKGROUND: "Main.Move_wnd.backgrnd.png",
+  BTN: ".btBoss.normal.0.png",
+  BTN_MOUSEOVER: ".btBoss.mouseOver.0.png",
+  BTN_CHECKED: ".btBoss.checked.0.png",
+  ICON: ".0.png",
+  MOB: ".mob.png",
+};
