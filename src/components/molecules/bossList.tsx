@@ -19,13 +19,13 @@ export default function BossList({ idx, setIdx }: Props) {
     };
     container.current?.addEventListener("scroll", onscroll, false);
     container.current?.addEventListener("mousewheel", onscroll, false);
-    container.current?.addEventListener("touchstart", onscroll, false);
-    container.current?.addEventListener("touchmove", onscroll, false);
+    // container.current?.addEventListener("touchstart", onscroll, false);
+    // container.current?.addEventListener("touchmove", onscroll, false);
     return () => {
       container.current?.removeEventListener("scroll", onscroll, false);
       container.current?.removeEventListener("mousewheel", onscroll, false);
-      container.current?.removeEventListener("touchstart", onscroll, false);
-      container.current?.removeEventListener("touchmove", onscroll, false);
+      // container.current?.removeEventListener("touchstart", onscroll, false);
+      // container.current?.removeEventListener("touchmove", onscroll, false);
     };
   }, []);
 

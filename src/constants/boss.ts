@@ -40,6 +40,6 @@ export const BOSS = {
   BTN: ".btBoss.normal.0.png",
   BTN_MOUSEOVER: ".btBoss.mouseOver.0.png",
   BTN_CHECKED: ".btBoss.checked.0.png",
-  ICON: ".0.png",
+  ICON: ".Icon.normal.0.png",
   MOB: ".mob.png",
 };

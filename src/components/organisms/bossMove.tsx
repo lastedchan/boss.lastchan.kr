@@ -4,7 +4,7 @@ import BossList from "@/components/molecules/bossList";
 import BossDetail from "@/components/molecules/bossDetail";
 import styled from "@emotion/styled";
 
-export default function Boss() {
+export default function BossMove() {
   const [idx, setIdx] = useState<number>(14);
 
   return (
