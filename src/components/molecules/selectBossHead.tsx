@@ -1,33 +1,30 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import styled from "@emotion/styled";
 
 export default function SelectBossHead() {
   return (
-    <Box>
-      <Head>
-        <Typography pl={"21px"} fontSize={"0.75rem"}>
-          보스
-        </Typography>
-        <Typography pl={"44px"} fontSize={"0.75rem"}>
-          난이도
-        </Typography>
-      </Head>
-      <li style={{ display: "grid", gridTemplateColumns: "171px 1fr", height: 5 }}>
-        <div style={{ height: "100%", background: "#555 linear-gradient(#333,transparent)" }} />
-        <div style={{ height: "100%", background: "#444 linear-gradient(#333,transparent)" }} />
-      </li>
-    </Box>
+    <Head>
+      <Typography pl={"10px"} sx={{ textShadow: "0 1px 0 #000" }}>
+        보스
+      </Typography>
+      <Typography pl={"25px"} sx={{ textShadow: "0 1px 0 0 #000" }}>
+        난이도
+      </Typography>
+    </Head>
   );
 }
 
 const Head = styled.li`
+  position: sticky;
   display: grid;
-  grid-template-columns: 171px 1fr;
+  grid-template-columns: 150px 1fr;
   height: 21px;
   border-top: 1px solid transparent;
   border-radius: 4px;
   align-items: center;
   color: #fdb;
   border-image: linear-gradient(to left, transparent 0%, #777 20%, #777 80%, transparent 100%) 1;
-  background-image: linear-gradient(#444, #333);
+  background: transparent linear-gradient(#444, #333);
+  box-shadow: 0 1px 4px #222;
+  z-index: 10;
 `;

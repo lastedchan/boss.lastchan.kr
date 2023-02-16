@@ -35,4 +35,5 @@ export const CLEARBOARD = {
       PRESSED: PATHNAME_CLEARBOARD + "difficulty.btextreme.pressed.0.png",
     },
   },
+  CLEAR: PATHNAME_CLEARBOARD + "clear.png",
 };

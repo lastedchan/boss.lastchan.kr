@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { BOSS_LIST, BOSS_IMAGES } from "@/constants/boss";
+import { BOSS, BOSS_IMAGES } from "@/constants/boss";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
@@ -24,7 +24,7 @@ export default function BossItem({ i, idx, setIdx }: Props) {
   return (
     <Item
       role={"boss-item"}
-      data-name={BOSS_LIST[i]}
+      data-name={BOSS[i].name}
       onClick={() => setIdx(i)}
       style={
         i === idx
