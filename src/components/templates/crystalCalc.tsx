@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import SelectBossPanel from "@/components/organisms/selectBossPanel";
-import { Box, useMediaQuery } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { useState } from "react";
 import BossTypeTab from "@/components/organisms/bossTypeTab";
 import { BossType } from "@/types/boss";
@@ -12,9 +12,7 @@ export default function CrystalCalc() {
 
   return (
     <Container isMobile={isMobile}>
-      <Box>
-        <BossTypeTab tab={type} setTab={setType} isMobile={isMobile} />
-      </Box>
+      <BossTypeTab tab={type} setTab={setType} isMobile={isMobile} />
       <SelectBossPanel type={type} />
     </Container>
   );

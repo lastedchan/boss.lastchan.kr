@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { Tab, Tabs } from "@mui/material";
+import { Box, Tab, Tabs } from "@mui/material";
 import styled from "@emotion/styled";
 import { BossType } from "@/types/boss";
 
@@ -11,25 +11,23 @@ type Props = {
 
 export default function BossTypeTab({ tab, setTab, isMobile }: Props) {
   return (
-    <Container
-      variant={isMobile ? "fullWidth" : "standard"}
-      orientation={isMobile ? "horizontal" : "vertical"}
-      value={tab}
-      onChange={(e, v) => setTab(v)}
-      className={isMobile ? "horizontal" : "vertical"}
-    >
-      <Item label={"주간"} value={"week"} />
-      <Item label={"월간"} value={"month"} />
-      <Item label={"일간"} value={"day"} />
-    </Container>
+    <Box pt={"9px"}>
+      <Container
+        variant={isMobile ? "fullWidth" : "standard"}
+        orientation={isMobile ? "horizontal" : "vertical"}
+        value={tab}
+        onChange={(e, v) => setTab(v)}
+        className={isMobile ? "horizontal" : "vertical"}
+      >
+        <Item label={"주간"} value={"week"} />
+        <Item label={"월간"} value={"month"} />
+        <Item label={"일간"} value={"day"} />
+      </Container>
+    </Box>
   );
 }
 
 const Container = styled(Tabs)`
-  position: sticky;
-  top: 10px;
-  left: 0;
-  padding-top: 9px;
   min-height: auto;
 
   &.horizontal {
