@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { CLEARBOARD } from "@/constants/clearboard";
-import { BOSS } from "@/constants/boss";
+import { BOSS_IMAGES } from "@/constants/boss";
 import Image from "next/image";
 
 type Props = {
@@ -10,7 +10,7 @@ type Props = {
 export default function BossIcon({ i }: Props) {
   return (
     <Container>
-      <Image src={BOSS.PATHNAME + i + BOSS.ICON} alt={""} width={25} height={25} />
+      <Image src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} alt={""} width={25} height={25} />
     </Container>
   );
 }

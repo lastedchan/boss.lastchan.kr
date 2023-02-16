@@ -1,4 +1,4 @@
-import { BOSS } from "@/constants/boss";
+import { BOSS_IMAGES } from "@/constants/boss";
 import { useState } from "react";
 import BossList from "@/components/molecules/bossList";
 import BossDetail from "@/components/molecules/bossDetail";
@@ -23,6 +23,6 @@ const Container = styled.div`
   padding: 8px 11px 14px 11px;
   width: 595px;
   height: 522px;
-  background: url(${BOSS.PATHNAME}${BOSS.BACKGROUND}) no-repeat;
+  background: url(${BOSS_IMAGES.PATHNAME}${BOSS_IMAGES.BACKGROUND}) no-repeat;
   background-size: auto 100%;
 `;

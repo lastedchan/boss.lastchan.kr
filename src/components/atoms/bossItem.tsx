@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { BOSS_LIST, BOSS } from "@/constants/boss";
+import { BOSS_LIST, BOSS_IMAGES } from "@/constants/boss";
 import { Dispatch, SetStateAction } from "react";
 
 type Props = {
@@ -14,10 +14,10 @@ export default function BossItem({ i, idx, setIdx }: Props) {
     margin: 0 auto;
     width: 135px;
     height: 30px;
-    background-image: url(${BOSS.PATHNAME + i + BOSS.BTN});
+    background-image: url(${BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.BTN});
 
     &:hover {
-      background-image: url(${BOSS.PATHNAME + i + BOSS.BTN_MOUSEOVER});
+      background-image: url(${BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.BTN_MOUSEOVER});
     }
   `;
 
@@ -29,7 +29,7 @@ export default function BossItem({ i, idx, setIdx }: Props) {
       style={
         i === idx
           ? {
-              backgroundImage: `url(${BOSS.PATHNAME + i + BOSS.BTN_CHECKED})`,
+              backgroundImage: `url(${BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.BTN_CHECKED})`,
             }
           : {}
       }
