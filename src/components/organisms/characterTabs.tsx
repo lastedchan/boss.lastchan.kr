@@ -17,8 +17,8 @@ export default function CharacterTabs() {
 
   return (
     <BossTabs variant={"scrollable"} sx={{ pt: 1, pl: 1, pr: 1 }}>
-      {characterList.map(item => (
-        <BossTab label={item.name} sx={{ width: "auto !important" }} />
+      {characterList.map((item, i) => (
+        <BossTab key={i} label={item.name} sx={{ width: "auto !important" }} />
       ))}
     </BossTabs>
   );
