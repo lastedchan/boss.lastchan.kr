@@ -1,18 +1,18 @@
 import { BOSS } from "@/constants/boss";
 import { Box, ListItem, ListItemText } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
-import BossDifficulty from "@/components/atoms/bossDifficulty";
+import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
 import { BossType } from "@/types/boss";
 
 type Props = {
   i: number;
   type: BossType;
-  selected: { difficulty: 0 | 1 | 2 | 3 | 4; name: string }[];
-  toggleSelected: (difficulty: 0 | 1 | 2 | 3 | 4, name: string) => void;
+  selected: { difficulty: number; name: string }[];
+  toggleSelected: (difficulty: number, name: string) => void;
 };
 
 export default function SelectBossItem({ i, type, selected, toggleSelected }: Props) {
-  if (!BOSS[i][type]?.length) return null;
+  if (!BOSS[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
 
   return (
     <ListItem
@@ -31,15 +31,17 @@ export default function SelectBossItem({ i, type, selected, toggleSelected }: Pr
       </Box>
       <Box role={"difficulty-item"}>
         <Box display={"flex"} gap={1} p={1} alignItems={"center"} height={"100%"} flexWrap={"wrap"}>
-          {BOSS[i][type].map(j => (
-            <BossDifficulty
-              key={j}
-              difficulty={j}
-              name={BOSS[i].name}
-              checked={!!selected.find(item => item.difficulty === j && item.name === BOSS[i].name)}
-              toggleSelected={toggleSelected}
-            />
-          ))}
+          {BOSS[i].difficulty?.map((item, difficulty) =>
+            item && item.type === type ? (
+              <BossDifficultyItem
+                key={difficulty}
+                difficulty={difficulty}
+                name={BOSS[i].name}
+                checked={!!selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
+                toggleSelected={toggleSelected}
+              />
+            ) : null
+          )}
         </Box>
       </Box>
     </ListItem>

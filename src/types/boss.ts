@@ -1,11 +1,8 @@
 export type Boss = {
   name: string;
-  difficulty: (0 | 1 | 2 | 3 | 4)[];
-  month: BossDifficulty[];
-  week: BossDifficulty[];
-  day: BossDifficulty[];
+  difficulty: (BossDifficulty | null)[];
 }[];
+export type BossDifficulty = { type: BossType; price: number };
 export type BossType = "week" | "month" | "day";
-export type BossDifficulty = 0 | 1 | 2 | 3 | 4;
 
-export type BossDifficultyColor = { background: string; color: string; border: string }[];
+export type BossDifficultyStyle = { background: string; color: string; border: string }[];

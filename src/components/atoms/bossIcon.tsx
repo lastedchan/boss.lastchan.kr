@@ -1,23 +1,18 @@
 import styled from "@emotion/styled";
 import { CLEARBOARD } from "@/constants/clearboard";
 import { BOSS_IMAGES } from "@/constants/boss";
-import Image from "next/image";
 
 type Props = {
   i: number;
 };
 
 export default function BossIcon({ i }: Props) {
-  return (
-    <Container>
-      <Image src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} alt={""} width={25} height={25} />
-    </Container>
-  );
+  return <Container i={i}></Container>;
 }
 
-const Container = styled.div`
+const Container = styled.div<{ i: number }>`
   padding: 2px;
   width: 29px;
   height: 29px;
-  background-image: url(${CLEARBOARD.ICON_BASE});
+  background: url(${_ => BOSS_IMAGES.PATHNAME + _.i + BOSS_IMAGES.ICON}) content-box, url(${CLEARBOARD.ICON_BASE}) padding-box;
 `;

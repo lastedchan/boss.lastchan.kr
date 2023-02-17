@@ -11,9 +11,10 @@ type Props = {
 };
 
 export default function SelectBossPanel({ type }: Props) {
-  const [selected, setSelected] = useState<{ difficulty: 0 | 1 | 2 | 3 | 4; name: string }[]>([]);
+  // const { selected, toggleSelected } = useCharacter(0);
+  const [selected, setSelected] = useState<{ difficulty: number; name: string }[]>([]);
 
-  const toggleSelected = (difficulty: 0 | 1 | 2 | 3 | 4, name: string) => {
+  const toggleSelected = (difficulty: number, name: string) => {
     const idx = selected.findIndex(item => item.difficulty === difficulty && item.name === name);
     if (idx !== -1) {
       setSelected(prev => [...prev.slice(0, idx), ...prev.slice(idx + 1)]);
