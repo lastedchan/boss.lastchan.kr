@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     !loaded && setLoaded(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!loaded) return null;

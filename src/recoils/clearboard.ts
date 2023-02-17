@@ -16,7 +16,7 @@ export const characterListRecoil = atom<CharacterList>({
 });
 
 export const characterSelector = selectorFamily<Character, number>({
-  key: "characterSelector",
+  key: "calc.crystal.characterSelector",
   get:
     idx =>
     ({ get }) =>
@@ -25,4 +25,10 @@ export const characterSelector = selectorFamily<Character, number>({
     idx =>
     ({ get, set }, newValue) =>
       set(characterListRecoil, prev => changeValue(prev, idx, newValue as Character)),
+});
+
+export const selectedCharacter = atom<number>({
+  key: "calc.crystal.selectedCharacter",
+  default: -1,
+  effects: [localStorageEffect<number>("CalcCrystal_selectedCharacter")],
 });

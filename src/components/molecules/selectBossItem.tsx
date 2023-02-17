@@ -22,12 +22,15 @@ export default function SelectBossItem({ i, type, selected, toggleSelected }: Pr
         p: 0,
         width: "100%",
         minHeight: 35,
+        backgroundImage:
+          "linear-gradient(to right, transparent 0, transparent 150px, rgba(0,0,0,.4) 151px, rgba(0,0,0,.2) 158px, rgba(0,0,0,.2) 100%)",
+        backgroundOrigin: "border-box",
         color: "#fff",
       }}
     >
       <Box role={"boss-name"} display={"flex"} p={"0 6px"} height={"100%"} alignItems={"center"}>
         <BossIcon key={i} i={i} />
-        <ListItemText sx={{ ml: 1.25 }}>{BOSS[i].name}</ListItemText>
+        <ListItemText sx={{ ml: 0.75 }}>{BOSS[i].name}</ListItemText>
       </Box>
       <Box role={"difficulty-item"}>
         <Box display={"flex"} gap={1} p={1} alignItems={"center"} height={"100%"} flexWrap={"wrap"}>

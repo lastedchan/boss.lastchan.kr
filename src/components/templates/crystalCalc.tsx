@@ -1,31 +1,27 @@
 import styled from "@emotion/styled";
 import SelectBossPanel from "@/components/organisms/selectBossPanel";
-import { Box, useMediaQuery } from "@mui/material";
-import { useState } from "react";
-import BossTypeTab from "@/components/organisms/bossTypeTab";
-import { BossType } from "@/types/boss";
 import CharacterTabs from "@/components/organisms/characterTabs";
+import useCharacterList from "@/hooks/useCharacterList";
 
 export default function CrystalCalc() {
-  const [type, setType] = useState<BossType>("week");
-
-  const isMobile = useMediaQuery("(max-width:540px)");
-
+  const { idx } = useCharacterList();
   return (
-    <Box bgcolor={"#333"}>
+    <Container>
       <CharacterTabs />
-      <Container isMobile={isMobile}>
-        <BossTypeTab tab={type} setTab={setType} isMobile={isMobile} />
-        <SelectBossPanel type={type} />
-      </Container>
-    </Box>
+      {idx >= 0 && <SelectBossPanel />}
+    </Container>
   );
 }
 
-const Container = styled.div<{ isMobile: boolean }>`
+const Container = styled.div`
   display: flex;
-  flex-direction: ${_ => (_.isMobile ? "column" : "row")};
-  padding: 10px;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  margin: auto;
+  max-width: 600px;
   width: 100%;
+  height: 100%;
   background-color: #333;
+  overflow: hidden;
 `;

@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material";
+import { ListItem, ListItemProps, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 
-export default function SelectBossHead() {
+export default function SelectBossHead(props: ListItemProps) {
   return (
-    <Head>
+    <Head {...props}>
       <Typography pl={"10px"} sx={{ textShadow: "0 1px 0 #000" }}>
         보스
       </Typography>
@@ -14,10 +14,10 @@ export default function SelectBossHead() {
   );
 }
 
-const Head = styled.li`
-  position: sticky;
+const Head = styled(ListItem)`
   display: grid;
   grid-template-columns: 150px 1fr;
+  padding: 0;
   height: 21px;
   border-top: 1px solid transparent;
   border-radius: 4px;
