@@ -46,7 +46,7 @@ export default function Yuna() {
   }, [init]);
 
   const photoCard = useCallback(async (t: string[], img: string[], ms: number = 1500) => {
-    sett2("");
+    t.length && sett2("");
     await wait(1000);
     let i: number;
     t.length && print(sett2, t);
@@ -61,7 +61,7 @@ export default function Yuna() {
     await wait(1000);
   }, []);
   const videoCard = useCallback(async (t: string[], video: string) => {
-    a2.current?.classList.add("on");
+    t.length && sett2("");
     await wait(1000);
     setVideo1(true);
     setVideo1src(video);
