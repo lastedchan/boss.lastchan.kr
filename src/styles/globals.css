@@ -21,6 +21,11 @@
     src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumGothic/NanumGothicLight.otf) format("embedded-opentype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumGothic/NanumGothicLight.ttf) format("truetype"), url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumGothic/NanumGothicLight.woff) format("woff");
 }
 
+@font-face {
+    font-family: 'bitbit';
+    src: url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff'), url('//cdn.df.nexon.com/img/common/font/DNFBitBit-Regular.woff2') ;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -49,6 +54,10 @@ html, body, #__next {
     overflow: hidden;
 }
 
+p {
+    margin: 0;
+}
+
 a {
     color: #000;
     text-decoration: none;
@@ -62,3 +71,4 @@ ul {
 li {
     list-style: none;
 }
+
