@@ -3,15 +3,18 @@ import { Box, ListItem, ListItemText } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
 import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
 import { BossType } from "@/types/boss";
+import useCharacter from "@/hooks/useCharacter";
+import useCharacterList from "@/hooks/useCharacterList";
 
 type Props = {
   i: number;
   type: BossType;
-  selected: { difficulty: number; name: string }[];
-  toggleSelected: (difficulty: number, name: string) => void;
 };
 
-export default function SelectBossItem({ i, type, selected, toggleSelected }: Props) {
+export default function SelectBossItem({ i, type }: Props) {
+  const { idx } = useCharacterList();
+  const { selected, toggleSelected } = useCharacter(idx);
+
   if (!BOSS[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
 
   return (
@@ -40,7 +43,7 @@ export default function SelectBossItem({ i, type, selected, toggleSelected }: Pr
                 key={difficulty}
                 difficulty={difficulty}
                 name={BOSS[i].name}
-                checked={!!selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
+                checked={!!selected?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
                 toggleSelected={toggleSelected}
               />
             ) : null

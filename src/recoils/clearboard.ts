@@ -1,7 +1,7 @@
 import { atom, selectorFamily } from "recoil";
 import { localStorageEffect } from "@/recoils/index";
 import { Character, CharacterList } from "@/types/crystalCalc";
-import { changeValue } from "@/libs/helpers";
+import { changeArray } from "@/libs/helpers";
 
 export const isRebootRecoil = atom<boolean>({
   key: "calc.crystal.isReboot",
@@ -24,7 +24,7 @@ export const characterSelector = selectorFamily<Character, number>({
   set:
     idx =>
     ({ get, set }, newValue) =>
-      set(characterListRecoil, prev => changeValue(prev, idx, newValue as Character)),
+      set(characterListRecoil, prev => changeArray(prev, idx, newValue as Character)),
 });
 
 export const selectedCharacter = atom<number>({

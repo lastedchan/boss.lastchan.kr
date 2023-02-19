@@ -3,21 +3,16 @@ import { CLEARBOARD } from "@/constants/clearboard";
 import SelectBossItem from "@/components/molecules/selectBossItem";
 import { BossType } from "@/types/boss";
 import styled from "@emotion/styled";
-import useCharacter from "@/hooks/useCharacter";
-import useCharacterList from "@/hooks/useCharacterList";
 
 type Props = {
   type: BossType;
 };
 
 export default function SelectBossBody({ type }: Props) {
-  const { idx } = useCharacterList();
-  const { selected, toggleSelected } = useCharacter(idx);
-
   return (
     <Container>
       {CLEARBOARD.ORDER.map(i => (
-        <SelectBossItem key={i} i={i} type={type} selected={selected} toggleSelected={toggleSelected} />
+        <SelectBossItem key={i} i={i} type={type} />
       ))}
     </Container>
   );

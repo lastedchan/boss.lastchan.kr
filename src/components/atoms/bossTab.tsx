@@ -2,7 +2,7 @@ import { Tab, TabProps } from "@mui/material";
 import styled from "@emotion/styled";
 
 export default function BossTab(props: TabProps) {
-  return <Item {...props} />;
+  return <Item sx={{ width: 187 }} {...props} />;
 }
 
 const Item = styled(Tab)`
@@ -12,7 +12,7 @@ const Item = styled(Tab)`
   align-items: flex-start;
   color: #fff;
   font-weight: bold;
-  width: 187px;
+  //width: 187px;
   height: 27px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
