@@ -46,6 +46,7 @@ export default function Yuna() {
   }, [init]);
 
   const photoCard = useCallback(async (t: string[], img: string[], ms: number = 1500) => {
+    sett2("");
     await wait(1000);
     let i: number;
     t.length && print(sett2, t);
@@ -55,9 +56,8 @@ export default function Yuna() {
       setImg2(i);
       await wait(ms - 500);
     }
-    await setImg2(-1);
     await wait(500);
-    sett2("");
+    await setImg2(-1);
     await wait(1000);
   }, []);
   const videoCard = useCallback(async (t: string[], video: string) => {
@@ -303,6 +303,9 @@ export default function Yuna() {
       "/yuna/20221112/KakaoTalk_20230219_162640379_03.jpg",
     ];
     await photoCard(t, img);
+
+    sett2("");
+    await wait(500);
 
     t = [
       "2",
@@ -1004,10 +1007,11 @@ export default function Yuna() {
             ref={video1ref}
             src={video1src}
             controls={false}
-            style={{ opacity: video1 ? 1 : 0 }}
+            style={{ opacity: video1 ? 1 : 0, touchAction: "none" }}
             onLoadedMetadata={e => e.currentTarget.play()}
             onEnded={() => setVideo1src("")}
           />
+          <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 10 }} />
         </div>
         <Text style={{ height: "6rem", textAlign: "left", fontSize: "1.5rem" }}>{t2}</Text>
       </Ani2>
