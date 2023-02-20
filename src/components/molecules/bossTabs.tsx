@@ -8,9 +8,10 @@ export default function BossTabs(props: TabsProps) {
 const Container = styled(Tabs)`
   flex: 0 0;
   min-height: 27px;
-  margin: 0 -8px;
+  margin-left: -8px;
   padding-left: 8px;
   padding-right: 8px;
+  width: calc(100% + 16px);
   border-bottom: 2px solid transparent;
   border-image: linear-gradient(to right, transparent 0, #777 32px, #777 calc(100% - 32px), transparent 100%) 1;
 
@@ -18,6 +19,7 @@ const Container = styled(Tabs)`
     margin: 0;
     padding-left: 0;
     padding-right: 0;
+    width: 100%;
     border: none;
     border-image: none;
   }

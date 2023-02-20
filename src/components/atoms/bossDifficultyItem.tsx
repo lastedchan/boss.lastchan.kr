@@ -7,10 +7,11 @@ type Props = {
   difficulty: number;
   name: string;
   checked: boolean;
-  toggleSelected: (difficulty: number, name: string) => void;
+  toggle: (difficulty: number, name: string) => void;
+  disabled?: boolean;
 };
 
-export default function BossDifficultyItem({ difficulty, name, checked, toggleSelected }: Props) {
+export default function BossDifficultyItem({ difficulty, name, checked, toggle, disabled }: Props) {
   return (
     <Box position={"relative"} width={68} height={19}>
       <Chip
@@ -26,7 +27,8 @@ export default function BossDifficultyItem({ difficulty, name, checked, toggleSe
           "& span": { padding: 0 },
           "&:hover": { textShadow: `0 0 4px ${BOSS_DIFFICULTY_STYLE[difficulty].color}` },
         }}
-        onClick={() => toggleSelected(difficulty, name)}
+        onClick={() => toggle(difficulty, name)}
+        disabled={disabled}
       />
       {checked ? (
         <Image

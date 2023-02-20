@@ -1,7 +1,7 @@
 import { ListItem, ListItemProps, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 
-export default function SelectBossHead(props: ListItemProps) {
+export default function BossHead(props: ListItemProps) {
   return (
     <Head {...props}>
       <Typography pl={"10px"} sx={{ textShadow: "0 1px 0 #000" }}>

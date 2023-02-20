@@ -1,19 +1,19 @@
-import { BOSS } from "@/constants/boss";
+import { BossType } from "@/types/boss";
 import { Box, ListItem, ListItemText } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
+import { BOSS } from "@/constants/boss";
 import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
-import { BossType } from "@/types/boss";
-import useCharacter from "@/hooks/useCharacter";
 import useCharacterList from "@/hooks/useCharacterList";
+import useCharacter from "@/hooks/useCharacter";
 
 type Props = {
   i: number;
   type: BossType;
 };
 
-export default function SelectBossItem({ i, type }: Props) {
+export default function ClearBossItem({ i, type }: Props) {
   const { idx } = useCharacterList();
-  const { selected, toggleSelected } = useCharacter(idx);
+  const { selected, clear, toggleClear } = useCharacter(idx);
 
   if (!BOSS[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
 
@@ -43,8 +43,14 @@ export default function SelectBossItem({ i, type }: Props) {
                 key={difficulty}
                 difficulty={difficulty}
                 name={BOSS[i].name}
-                checked={!!selected?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
-                toggle={toggleSelected}
+                checked={
+                  !!(
+                    selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name) &&
+                    clear?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)
+                  )
+                }
+                toggle={toggleClear}
+                disabled={!selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
               />
             ) : null
           )}

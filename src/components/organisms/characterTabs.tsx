@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function CharacterTabs() {
-  const { characterList, idx, setIdx, addCharacter, removeCharacter } = useCharacterList();
+  const { characterList, idx, setIdx, addCharacter, renameCharacter, removeCharacter } = useCharacterList();
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
@@ -42,15 +42,13 @@ export default function CharacterTabs() {
         />
       </BossTabs>
       <Menu open={!!anchorEl} onClose={() => setAnchorEl(null)} anchorEl={anchorEl}>
-        <MenuItem>
+        <MenuItem onClick={() => anchorEl?.dataset.idx && renameCharacter(Number(anchorEl.dataset.idx)) && setAnchorEl(null)}>
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>
           <ListItemText>이름 변경</ListItemText>
         </MenuItem>
-        <MenuItem
-          onClick={async () => anchorEl?.dataset.idx && (await removeCharacter(Number(anchorEl?.dataset.idx))) && setAnchorEl(null)}
-        >
+        <MenuItem onClick={() => anchorEl?.dataset.idx && removeCharacter(Number(anchorEl.dataset.idx)) && setAnchorEl(null)}>
           <ListItemIcon>
             <DeleteIcon color={"error"} />
           </ListItemIcon>

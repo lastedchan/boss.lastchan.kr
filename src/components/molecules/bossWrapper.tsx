@@ -1,8 +1,12 @@
-import { Box, BoxProps } from "@mui/material";
+import { Box, BoxProps, List } from "@mui/material";
 import styled from "@emotion/styled";
 
 export default function BossWrapper(props: BoxProps) {
-  return <Container {...props} />;
+  return (
+    <Container {...props}>
+      <Wrapper>{props.children}</Wrapper>
+    </Container>
+  );
 }
 
 const Container = styled(Box)`
@@ -15,5 +19,17 @@ const Container = styled(Box)`
     linear-gradient(to bottom, transparent 8px, #777 64px, #777 calc(100% - 64px), transparent calc(100% - 8px)) border-box,
     linear-gradient(to bottom, transparent, #222 calc(100% - 1px), #222) border-box,
     linear-gradient(to left, transparent 8px, #777 64px, #777 calc(100% - 64px), transparent calc(100% - 8px)) border-box;
+  overflow: hidden;
+`;
+
+const Wrapper = styled(List)`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+  max-height: 100%;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: transparent;
   overflow: hidden;
 `;
