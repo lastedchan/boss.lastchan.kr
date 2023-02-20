@@ -25,7 +25,7 @@ export default function CrystalCalc() {
         <BossTab label={"격파 완료"} />
         <BossTab label={"결산"} />
       </BossTabs>
-      <div hidden={!inRange(tab, 0, 2)}>
+      <div style={{ margin: "auto", padding: "0 8px", maxWidth: 720, width: "100%" }} hidden={!inRange(tab, 0, 2)}>
         <CharacterTabs />
       </div>
       <TabPanel idx={0} value={tab}>
