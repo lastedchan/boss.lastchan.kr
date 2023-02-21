@@ -2,24 +2,33 @@ import { Box, List } from "@mui/material";
 import styled from "@emotion/styled";
 
 type Props = {
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | (JSX.Element | null)[] | null;
 };
 
 export default function BossBody({ children }: Props) {
   return (
-    <Box flex={1} width={"100%"} height={"100%"} overflow={"auto"}>
-      <Container>{children}</Container>
-    </Box>
+    <Container>
+      <Wrapper>{children}</Wrapper>
+    </Container>
   );
 }
 
-const Container = styled(List)`
-  padding: 4px 0 0;
+const Container = styled(Box)`
+  flex: 1;
   width: 100%;
-  min-height: 78px;
-  background: #555
-    linear-gradient(to right, transparent 0, transparent 150px, rgba(0, 0, 0, 0.4) 151px, rgba(0, 0, 0, 0.2) 158px, rgba(0, 0, 0, 0.2) 100%);
+  height: 100%;
+  background: #555;
+  overflow: auto;
+`;
+
+const Wrapper = styled(List)`
+  padding: 0;
+  width: 100%;
   overflow: hidden;
+
+  & > li:first-of-type {
+    padding-top: 4px;
+  }
 
   & > li:last-of-type {
     padding-bottom: 4px;

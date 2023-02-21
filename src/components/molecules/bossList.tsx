@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ORDER_BOSS } from "@/constants/boss";
-import BossItem from "@/components/atoms/bossItem";
+import MoveBossItem from "@/components/atoms/moveBossItem";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 
 type Props = {
@@ -30,7 +30,7 @@ export default function BossList({ idx, setIdx }: Props) {
     <Container ref={container}>
       <List>
         {ORDER_BOSS.map(i => (
-          <BossItem key={i} i={i} idx={idx} setIdx={setIdx} />
+          <MoveBossItem key={i} i={i} idx={idx} setIdx={setIdx} />
         ))}
       </List>
     </Container>

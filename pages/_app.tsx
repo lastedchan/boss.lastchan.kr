@@ -13,6 +13,29 @@ export default function App({ Component, pageProps }: AppProps) {
     typography: {
       fontFamily: "'NanumGothic', '돋움', 'Dotum', serif",
     },
+    components: {
+      MuiDivider: {
+        styleOverrides: {
+          root: {
+            borderColor: "rgba(255,255,255,0.12)",
+          },
+        },
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          thumb: {
+            background: "linear-gradient(to top, #fff 25%, #ccc) content-box",
+          },
+          track: { background: "#999" },
+          switchBase: {
+            "&.Mui-checked+.MuiSwitch-track": {
+              background: "linear-gradient(to top, #be0 25%, #691)",
+              opacity: 1,
+            },
+          },
+        },
+      },
+    },
   });
 
   useEffect(() => {

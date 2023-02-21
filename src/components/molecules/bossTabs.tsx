@@ -6,7 +6,7 @@ export default function BossTabs(props: TabsProps) {
 }
 
 const Container = styled(Tabs)`
-  flex: 0 0;
+  position: relative;
   min-height: 27px;
   margin-left: -8px;
   padding-left: 8px;

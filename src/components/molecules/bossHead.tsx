@@ -7,7 +7,7 @@ export default function BossHead(props: ListItemProps) {
       <Typography pl={"10px"} sx={{ textShadow: "0 1px 0 #000" }}>
         보스
       </Typography>
-      <Typography pl={"25px"} sx={{ textShadow: "0 1px 0 0 #000" }}>
+      <Typography pl={"25px"} sx={{ textShadow: "0 1px 0 #000" }}>
         난이도
       </Typography>
     </Head>

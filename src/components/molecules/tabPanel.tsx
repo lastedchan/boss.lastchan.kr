@@ -1,16 +1,21 @@
 import styled from "@emotion/styled";
+import { Box, BoxProps } from "@mui/material";
 
 type Props = {
   idx: number;
   value: number;
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | (JSX.Element | null)[] | null;
 };
 
-export default function TabPanel({ idx, value, children }: Props) {
-  return <Container hidden={idx !== value}>{children}</Container>;
+export default function TabPanel({ idx, value, children, ...props }: Props & BoxProps) {
+  return (
+    <Container hidden={idx !== value} {...props}>
+      {children}
+    </Container>
+  );
 }
 
-const Container = styled.div`
+const Container = styled(Box)`
   display: flex;
   flex-direction: column;
   width: 100%;
