@@ -4,15 +4,13 @@ import type { AppProps } from "next/app";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
 import { PAGES, TITLE } from "@/constants/app";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const page = useMemo(() => PAGES.find(_ => _.path === router.pathname), [router.pathname]);
-
-  const [loaded, setLoaded] = useState(false);
 
   const theme = createTheme({
     typography: {
@@ -44,12 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   useEffect(() => {
-    !loaded && setLoaded(true);
     window.oncontextmenu = e => e.preventDefault();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!loaded) return null;
 
   return (
     <RecoilRoot>
