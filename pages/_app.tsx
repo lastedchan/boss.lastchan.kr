@@ -4,9 +4,14 @@ import type { AppProps } from "next/app";
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
 import { RecoilRoot } from "recoil";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import { PAGES, TITLE } from "@/constants/app";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const page = useMemo(() => PAGES.find(_ => _.path === router.pathname), [router.pathname]);
+
   const [loaded, setLoaded] = useState(false);
 
   const theme = createTheme({
@@ -50,6 +55,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Head>
         <meta name={"viewport"} content={"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"} />
+        <meta property={"og:title"} content={page?.title ?? TITLE} />
+        <meta property={"og:description"} content={page?.description} />
+        <meta property={"og:image"} content={page?.image} />
+        <title>{page?.title ?? TITLE}</title>
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
