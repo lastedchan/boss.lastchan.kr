@@ -3,7 +3,7 @@ import BossWrapper from "@/components/molecules/bossWrapper";
 import BossHead from "@/components/molecules/bossHead";
 import BossBody from "@/components/molecules/bossBody";
 import styled from "@emotion/styled";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useIsMobile from "@/hooks/useIsMobile";
 import { CLEARBOARD } from "@/constants/clearboard";
 
@@ -18,7 +18,12 @@ export default function BossPanel({ BossItem }: Props) {
     <Container sx={{ gridTemplate: isMobile ? "27px auto / 1fr" : "auto / 94px 1fr" }}>
       <BossTypeTab />
       <BossWrapper minHeight={119}>
-        <BossHead sx={{ flex: "0 0 auto" }} />
+        <BossHead sx={{ flex: "0 0 auto" }}>
+          <Typography pl={1} width={144}>
+            보스
+          </Typography>
+          <Typography pl={3.5}>난이도</Typography>
+        </BossHead>
         <BossBody>
           {CLEARBOARD.ORDER.map(i => (
             <BossItem key={i} i={i} />

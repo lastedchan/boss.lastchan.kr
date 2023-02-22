@@ -25,12 +25,8 @@ export default function ClearBossItem({ i }: Props) {
             key={difficulty}
             difficulty={difficulty}
             name={BOSS[i].name}
-            checked={
-              !!(
-                selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name) &&
-                clear?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)
-              )
-            }
+            selected={!!selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
+            clear={!!clear?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
             toggle={toggleClear}
             disabled={!selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
           />

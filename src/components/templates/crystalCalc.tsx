@@ -5,8 +5,6 @@ import { useState } from "react";
 import TabPanel from "@/components/molecules/tabPanel";
 import CharacterTabs from "@/components/organisms/characterTabs";
 import { inRange } from "lodash";
-import useCharacter from "@/hooks/useCharacter";
-import useCharacterList from "@/hooks/useCharacterList";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Settings from "@/components/organisms/settings";
 import SelectBossItem from "@/components/molecules/selectBossItem";
@@ -15,8 +13,6 @@ import ClearBossItem from "@/components/molecules/clearBossItem";
 
 export default function CrystalCalc() {
   const [tab, setTab] = useState(0);
-  const { idx } = useCharacterList();
-  const { character } = useCharacter(idx);
 
   return (
     <Container>
@@ -29,10 +25,10 @@ export default function CrystalCalc() {
       {inRange(tab, 0, 2) && <CharacterTabs />}
       <Wrapper>
         <TabPanel idx={0} value={tab}>
-          {character && <BossPanel BossItem={SelectBossItem} />}
+          <BossPanel BossItem={SelectBossItem} />
         </TabPanel>
         <TabPanel idx={1} value={tab}>
-          {character && <BossPanel BossItem={ClearBossItem} />}
+          <BossPanel BossItem={ClearBossItem} />
         </TabPanel>
         <TabPanel idx={2} value={tab}></TabPanel>
         <TabPanel idx={3} value={tab}>

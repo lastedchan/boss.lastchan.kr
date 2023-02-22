@@ -12,7 +12,7 @@ type Props = {
 
 export default function SelectBossItem({ i }: Props) {
   const { idx } = useCharacterList();
-  const { selected, toggleSelected } = useCharacter(idx);
+  const { selected, clear, toggleSelected } = useCharacter(idx);
   const type = useRecoilValue(selectedType);
 
   if (!BOSS[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
@@ -25,7 +25,8 @@ export default function SelectBossItem({ i }: Props) {
             key={difficulty}
             difficulty={difficulty}
             name={BOSS[i].name}
-            checked={!!selected?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
+            selected={!!selected.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
+            clear={selected && !!clear?.find(item => item.difficulty === difficulty && item.name === BOSS[i].name)}
             toggle={toggleSelected}
           />
         ) : null

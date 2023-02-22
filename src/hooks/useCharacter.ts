@@ -15,7 +15,7 @@ export default function useCharacter(idx: number) {
     if (idx !== -1) {
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, idx, { ...prev.boss[idx], selected: !prev.boss[idx].selected }) }));
     } else {
-      const sameTypeIdx = selected?.findIndex(
+      const sameTypeIdx = character?.boss.findIndex(
         item => item.name === name && BOSS.find(_ => _.name === item.name)?.difficulty[item.difficulty]?.type === type
       );
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, sameTypeIdx, { difficulty, name, selected: true }) }));
@@ -24,15 +24,9 @@ export default function useCharacter(idx: number) {
 
   const clear = useMemo(() => character?.boss.filter(_ => _.clear), [character]);
   const toggleClear = (difficulty: number, name: string) => {
-    const type = BOSS.find(_ => _.name === name)?.difficulty[difficulty]?.type;
     const idx = character?.boss.findIndex(item => item.difficulty === difficulty && item.name === name);
     if (idx !== -1) {
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, idx, { ...prev.boss[idx], clear: !prev.boss[idx].clear }) }));
-    } else {
-      const sameTypeIdx = clear?.findIndex(
-        item => item.name === name && BOSS.find(_ => _.name === item.name)?.difficulty[item.difficulty]?.type === type
-      );
-      setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, sameTypeIdx, { difficulty, name, clear: true }) }));
     }
   };
 

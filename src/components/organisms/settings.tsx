@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { isRebootRecoil } from "@/recoils/clearboard";
 import BossWrapper from "@/components/molecules/bossWrapper";
 import Image from "next/image";
+import BossHead from "@/components/molecules/bossHead";
 
 export default function Settings() {
   const [isReboot, setIsReboot] = useRecoilState(isRebootRecoil);
@@ -11,6 +12,14 @@ export default function Settings() {
   return (
     <Container>
       <BossWrapper>
+        <BossHead style={{ padding: "0 16px" }}>
+          <Typography flex={1} pl={2}>
+            항목
+          </Typography>
+          <Typography flex={"0 100px"} pl={4}>
+            설정
+          </Typography>
+        </BossHead>
         <ListItem>
           <ListItemText>
             <Typography display={"flex"} gap={0.5} alignItems={"center"} fontWeight={"bold"}>
@@ -23,7 +32,7 @@ export default function Settings() {
               리부트
             </Typography>
           </ListItemText>
-          <ListItemText sx={{ textAlign: "center" }}>
+          <ListItemText sx={{ flex: "0 100px", textAlign: "center" }}>
             <Switch checked={isReboot} onChange={(e, v) => setIsReboot(v)} />
           </ListItemText>
         </ListItem>

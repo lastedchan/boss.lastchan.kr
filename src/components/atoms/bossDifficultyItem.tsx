@@ -6,12 +6,13 @@ import Image from "next/image";
 type Props = {
   difficulty: number;
   name: string;
-  checked: boolean;
+  selected: boolean;
+  clear: boolean;
   toggle: (difficulty: number, name: string) => void;
   disabled?: boolean;
 };
 
-export default function BossDifficultyItem({ difficulty, name, checked, toggle, disabled }: Props) {
+export default function BossDifficultyItem({ difficulty, name, selected, clear, toggle, disabled }: Props) {
   return (
     <Box position={"relative"} width={68} height={19}>
       <Chip
@@ -23,14 +24,14 @@ export default function BossDifficultyItem({ difficulty, name, checked, toggle, 
           width: "100%",
           height: "100%",
           fontWeight: "bold",
-          filter: `brightness(${checked ? 0.5 : 1})`,
+          filter: `brightness(${selected ? (clear ? 0.5 : 1) : 0.38})`,
           "& span": { padding: 0 },
           "&:hover": { textShadow: `0 0 4px ${BOSS_DIFFICULTY_STYLE[difficulty].color}` },
         }}
         onClick={() => toggle(difficulty, name)}
         disabled={disabled}
       />
-      {checked ? (
+      {selected && clear ? (
         <Image
           src={CLEARBOARD.CLEAR}
           alt={""}
