@@ -40,6 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     !loaded && setLoaded(true);
+    window.oncontextmenu = e => e.preventDefault();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -48,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <Head>
-        <meta name={"viewport"} content={"width=device-width,initial-scale=1"} />
+        <meta name={"viewport"} content={"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"} />
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
