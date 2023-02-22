@@ -1,6 +1,6 @@
-import { Boss, BossDifficultyStyle } from "@/types/boss";
+import { BossList, BossDifficultyStyle } from "@/types/bossList";
 
-export const BOSS: Boss = [
+export const BOSS_LIST: BossList = [
   {
     name: "발록",
     difficulty: [{ type: "day", price: 0 }],

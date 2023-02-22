@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { ORDER_BOSS } from "@/constants/boss";
+import { ORDER_BOSS } from "@/constants/BOSS_LIST";
 import MoveBossItem from "@/components/atoms/moveBossItem";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 

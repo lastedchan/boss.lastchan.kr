@@ -1,4 +1,4 @@
-import { BOSS_IMAGES } from "@/constants/boss";
+import { BOSS_IMAGES } from "@/constants/BOSS_LIST";
 import { useState } from "react";
 import BossList from "@/components/molecules/bossList";
 import BossDetail from "@/components/molecules/bossDetail";

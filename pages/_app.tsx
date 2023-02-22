@@ -53,9 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property={"og:title"} content={page?.title} />
         <meta property={"og:description"} content={page?.description} />
         <meta property={"og:image"} content={page?.image} />
-        <title>
-          {TITLE} {page?.title}
-        </title>
+        <title>{TITLE + " " + (page?.title ?? "")}</title>
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />

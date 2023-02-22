@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { CLEARBOARD } from "@/constants/clearboard";
-import { BOSS_IMAGES } from "@/constants/boss";
+import { BOSS_IMAGES } from "@/constants/BOSS_LIST";
 
 type Props = {
   i: number;

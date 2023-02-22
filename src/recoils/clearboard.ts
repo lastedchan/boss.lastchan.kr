@@ -2,7 +2,7 @@ import { atom, selectorFamily } from "recoil";
 import { localStorageEffect } from "@/recoils/index";
 import { Character, CharacterList } from "@/types/crystalCalc";
 import { changeArray } from "@/libs/helpers";
-import { BossType } from "@/types/boss";
+import { BossType } from "@/types/bossList";
 
 export const isRebootRecoil = atom<boolean>({
   key: "calc.crystal.isReboot",

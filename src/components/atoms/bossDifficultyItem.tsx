@@ -1,4 +1,4 @@
-import { BOSS_DIFFICULTY_LABEL, BOSS_DIFFICULTY_STYLE } from "@/constants/boss";
+import { BOSS_DIFFICULTY_LABEL, BOSS_DIFFICULTY_STYLE } from "@/constants/BOSS_LIST";
 import { Box, Chip } from "@mui/material";
 import { CLEARBOARD } from "@/constants/clearboard";
 import Image from "next/image";

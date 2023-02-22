@@ -1,7 +1,7 @@
 import { useRecoilState } from "recoil";
 import { characterSelector, isRebootRecoil } from "@/recoils/clearboard";
 import { useMemo } from "react";
-import { BOSS } from "@/constants/boss";
+import { BOSS_LIST } from "@/constants/BOSS_LIST";
 import { changeArray } from "@/libs/helpers";
 
 export default function useCharacter(idx: number) {
@@ -10,13 +10,13 @@ export default function useCharacter(idx: number) {
 
   const selected = useMemo(() => character?.boss.filter(_ => _.selected), [character]);
   const toggleSelected = (difficulty: number, name: string) => {
-    const type = BOSS.find(_ => _.name === name)?.difficulty[difficulty]?.type;
+    const type = BOSS_LIST.find(_ => _.name === name)?.difficulty[difficulty]?.type;
     const idx = character?.boss.findIndex(item => item.difficulty === difficulty && item.name === name);
     if (idx !== -1) {
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, idx, { ...prev.boss[idx], selected: !prev.boss[idx].selected }) }));
     } else {
       const sameTypeIdx = character?.boss.findIndex(
-        item => item.name === name && BOSS.find(_ => _.name === item.name)?.difficulty[item.difficulty]?.type === type
+        item => item.name === name && BOSS_LIST.find(_ => _.name === item.name)?.difficulty[item.difficulty]?.type === type
       );
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, sameTypeIdx, { difficulty, name, selected: true }) }));
     }

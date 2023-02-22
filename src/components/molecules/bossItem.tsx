@@ -1,5 +1,5 @@
-import { BossType } from "@/types/boss";
-import { BOSS } from "@/constants/boss";
+import { BossType } from "@/types/bossList";
+import { BOSS_LIST } from "@/constants/BOSS_LIST";
 import { Box, ListItem, ListItemText } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
 import styled from "@emotion/styled";
@@ -11,13 +11,13 @@ type Props = {
 };
 
 export default function BossItem({ i, type, children }: Props) {
-  if (!BOSS[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
+  if (!BOSS_LIST[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
 
   return (
     <Item>
       <BossName role={"boss-name"}>
         <BossIcon i={i} />
-        <ListItemText sx={{ ml: 0.75 }}>{BOSS[i].name}</ListItemText>
+        <ListItemText sx={{ ml: 0.75 }}>{BOSS_LIST[i].name}</ListItemText>
       </BossName>
       <DifficultyItem role={"difficulty-item"}>{children}</DifficultyItem>
     </Item>

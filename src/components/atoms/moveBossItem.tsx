@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { BOSS, BOSS_IMAGES } from "@/constants/boss";
+import { BOSS_LIST, BOSS_IMAGES } from "@/constants/BOSS_LIST";
 import { Dispatch, SetStateAction } from "react";
 import { ListItem } from "@mui/material";
 
@@ -13,7 +13,7 @@ export default function MoveBossItem({ i, idx, setIdx }: Props) {
   return (
     <Item
       role={"boss-item"}
-      data-name={BOSS[i].name}
+      data-name={BOSS_LIST[i].name}
       onClick={() => setIdx(i)}
       sx={
         i === idx
