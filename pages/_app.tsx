@@ -50,10 +50,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Head>
         <meta name={"viewport"} content={"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"} />
-        <meta property={"og:title"} content={page?.title ?? TITLE} />
+        <meta property={"og:title"} content={page?.title} />
         <meta property={"og:description"} content={page?.description} />
         <meta property={"og:image"} content={page?.image} />
-        <title>{page?.title ?? TITLE}</title>
+        <title>
+          {TITLE} {page?.title}
+        </title>
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
