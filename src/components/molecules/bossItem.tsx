@@ -1,25 +1,51 @@
-import { BossType } from "@/types/bossList";
-import { BOSS_LIST } from "@/constants/BOSS_LIST";
+import { Boss } from "@/types/boss";
+import { BOSS_DIFFICULTY_LABEL, BOSS_IMAGES } from "@/constants/boss";
 import { Box, ListItem, ListItemText } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
 import styled from "@emotion/styled";
+import { useBoss } from "@/swrs/boss";
+import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
+import useCharacterList from "@/hooks/useCharacterList";
+import useCharacter from "@/hooks/useCharacter";
+import { useRecoilValue } from "recoil";
+import { selectedType } from "@/recoils/clearboard";
 
 type Props = {
   i: number;
-  type: BossType;
-  children?: JSX.Element | (JSX.Element | null)[] | null;
+  boss: Boss;
+  type: "select" | "clear";
 };
 
-export default function BossItem({ i, type, children }: Props) {
-  if (!BOSS_LIST[i].difficulty?.filter(_ => _ && _.type === type).length) return null;
+export default function BossItem({ i, boss, type }: Props) {
+  const { idx } = useCharacterList();
+  const { selected, clear, toggleSelected, toggleClear } = useCharacter(idx);
+  const period = useRecoilValue(selectedType);
+  const { boss: data } = useBoss(i, period);
+
+  if (!boss) return null;
+
+  // console.log(data?.difficulty);
 
   return (
     <Item>
       <BossName role={"boss-name"}>
-        <BossIcon i={i} />
-        <ListItemText sx={{ ml: 0.75 }}>{BOSS_LIST[i].name}</ListItemText>
+        <BossIcon src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} />
+        <ListItemText sx={{ ml: 0.75 }}>{boss?.name}</ListItemText>
       </BossName>
-      <DifficultyItem role={"difficulty-item"}>{children}</DifficultyItem>
+      <DifficultyItem role={"difficulty-item"}>
+        {data?.difficulty?.map(item =>
+          item && item.period === period ? (
+            <BossDifficultyItem
+              key={item.difficulty}
+              difficulty={BOSS_DIFFICULTY_LABEL.findIndex(_ => _ === item.difficulty)}
+              name={boss.name}
+              selected={true}
+              clear={false}
+              toggle={type === "select" ? toggleSelected : toggleClear}
+            />
+          ) : null
+        )}
+      </DifficultyItem>
     </Item>
   );
 }
@@ -44,6 +70,7 @@ const DifficultyItem = styled(Box)`
   display: flex;
   gap: 8px;
   padding: 8px 8px 8px 12px;
+  min-height: 35px;
   align-items: center;
   flex-wrap: wrap;
 `;

@@ -6,13 +6,24 @@ import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import useIsMobile from "@/hooks/useIsMobile";
 import { CLEARBOARD } from "@/constants/clearboard";
+import { useBossList } from "@/swrs/boss";
+import BossItem from "@/components/molecules/bossItem";
+import { useRecoilValue } from "recoil";
+import { selectedType } from "@/recoils/clearboard";
 
 type Props = {
-  BossItem: ({ i }: { i: number }) => JSX.Element | null;
+  type: "select" | "clear";
+  // BossItem: ({ i }: { i: number }) => JSX.Element | null;
 };
 
-export default function BossPanel({ BossItem }: Props) {
+export default function BossPanel({ type }: Props) {
+  const period = useRecoilValue(selectedType);
+  const { bossList, error, isLoading } = useBossList(period);
   const isMobile = useIsMobile();
+
+  if (isLoading || !bossList) return null;
+
+  console.log(bossList);
 
   return (
     <Container sx={{ gridTemplate: isMobile ? "27px auto / 1fr" : "auto / 94px 1fr" }}>
@@ -26,7 +37,7 @@ export default function BossPanel({ BossItem }: Props) {
         </BossHead>
         <BossBody>
           {CLEARBOARD.ORDER.map(i => (
-            <BossItem key={i} i={i} />
+            <BossItem key={i} i={i} type={type} boss={bossList[i - 1]} />
           ))}
         </BossBody>
       </BossWrapper>

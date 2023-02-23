@@ -1,10 +1,10 @@
 import styled from "@emotion/styled";
-import { Box, ListItem, ListItemText, Switch, Typography } from "@mui/material";
+import { Box, Button, ListItem, ListItemText, Switch, TextField, Typography } from "@mui/material";
 import { useRecoilState } from "recoil";
 import { isRebootRecoil } from "@/recoils/clearboard";
 import BossWrapper from "@/components/molecules/bossWrapper";
-import Image from "next/image";
 import BossHead from "@/components/molecules/bossHead";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
 export default function Settings() {
   const [isReboot, setIsReboot] = useRecoilState(isRebootRecoil);
@@ -13,29 +13,31 @@ export default function Settings() {
     <Container>
       <BossWrapper>
         <BossHead style={{ padding: "0 16px" }}>
-          <Typography flex={1} pl={2}>
+          <Typography flex={1} pl={1}>
             항목
           </Typography>
-          <Typography flex={"0 100px"} pl={4}>
+          <Typography flex={"0 100px"} textAlign={"center"}>
             설정
           </Typography>
         </BossHead>
-        <ListItem>
+        <Item>
+          <ListItemText>리부트</ListItemText>
           <ListItemText>
-            <Typography display={"flex"} gap={0.5} alignItems={"center"} fontWeight={"bold"}>
-              <Image
-                src={"https://ssl.nexon.com/s2/game/maplestory/renewal/common/world_icon/icon_3.png"}
-                alt={""}
-                width={13}
-                height={13}
-              />
-              리부트
-            </Typography>
-          </ListItemText>
-          <ListItemText sx={{ flex: "0 100px", textAlign: "center" }}>
             <Switch checked={isReboot} onChange={(e, v) => setIsReboot(v)} />
           </ListItemText>
-        </ListItem>
+        </Item>
+        <Item>
+          <ListItemText>
+            <TextField type={"text"} />
+            <TextField type={"password"} />
+          </ListItemText>
+          <ListItemText sx={{ justifyContent: "center" }}>
+            <Button variant={"contained"}>
+              로그인
+              <KeyboardDoubleArrowRightIcon />
+            </Button>
+          </ListItemText>
+        </Item>
       </BossWrapper>
     </Container>
   );
@@ -47,4 +49,22 @@ const Container = styled(Box)`
   width: 100%;
   height: 100%;
   overflow: auto;
+`;
+
+const Item = styled(ListItem)`
+  & > :first-of-type {
+    flex: 1;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    & .MuiTypography-root {
+      font-weight: bold;
+    }
+  }
+
+  & > :nth-of-type(2) {
+    flex: 0 0 100px;
+    text-align: center;
+  }
 `;

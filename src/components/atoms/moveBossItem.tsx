@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { BOSS_LIST, BOSS_IMAGES } from "@/constants/BOSS_LIST";
+import { BOSS_IMAGES, BOSS_LIST } from "@/constants/boss";
 import { Dispatch, SetStateAction } from "react";
 import { ListItem } from "@mui/material";
 

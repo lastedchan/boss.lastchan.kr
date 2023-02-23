@@ -23,6 +23,9 @@
       <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
       <option name="PLACE_PARENS_FOR_CONSTRUCTOR" value="1" />
     </PHPCodeStyleSettings>
+    <SqlCodeStyleSettings version="6">
+      <option name="DISABLE_FORMATTING" value="true" />
+    </SqlCodeStyleSettings>
     <TypeScriptCodeStyleSettings version="0">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="SPACE_BEFORE_FUNCTION_LEFT_PARENTH" value="false" />

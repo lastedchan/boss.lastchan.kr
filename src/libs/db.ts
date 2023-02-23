@@ -1,29 +1,32 @@
-import { MysqlError } from "mysql";
+import mysql, { MysqlError } from "mysql";
 
-const mysql = require("mysql");
-
-export const conn = () =>
+export const connect = () =>
   mysql.createConnection({
     host: process.env.DATABASE_HOST,
-    port: process.env.DATABASE_PORT,
+    port: 3306,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
   });
 
 export function get<T>(sql: string, values?: any[]) {
-  return new Promise((resolve: (value: T) => void, reject) => {
-    conn().query(sql, values, (err: MysqlError | null, res: T) => {
+  return new Promise<T>((resolve: (value: T) => void, reject) => {
+    const conn = connect();
+    conn.query(sql, values, (err: MysqlError | null, res: T) => {
       if (err) reject(err);
       else resolve(res);
     });
+    conn.end();
   });
 }
+
 export function first<T>(sql: string, values?: any[]) {
-  return new Promise((resolve: (value: T) => void, reject) => {
-    conn().query(sql, values, (err: MysqlError | null, res: T[]) => {
+  return new Promise<T>((resolve: (value: T) => void, reject) => {
+    const conn = connect();
+    conn.query(sql, values, (err: MysqlError | null, res: T[]) => {
       if (err) reject(err);
       else resolve(res?.[0]);
     });
+    conn.end();
   });
 }

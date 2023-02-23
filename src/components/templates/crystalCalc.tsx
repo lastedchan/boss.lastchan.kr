@@ -7,9 +7,7 @@ import CharacterTabs from "@/components/organisms/characterTabs";
 import { inRange } from "lodash";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Settings from "@/components/organisms/settings";
-import SelectBossItem from "@/components/molecules/selectBossItem";
 import BossPanel from "@/components/molecules/bossPanel";
-import ClearBossItem from "@/components/molecules/clearBossItem";
 
 export default function CrystalCalc() {
   const [tab, setTab] = useState(0);
@@ -25,10 +23,10 @@ export default function CrystalCalc() {
       {inRange(tab, 0, 2) && <CharacterTabs />}
       <Wrapper>
         <TabPanel idx={0} value={tab}>
-          <BossPanel BossItem={SelectBossItem} />
+          <BossPanel type={"select"} />
         </TabPanel>
         <TabPanel idx={1} value={tab}>
-          <BossPanel BossItem={ClearBossItem} />
+          <BossPanel type={"clear"} />
         </TabPanel>
         <TabPanel idx={2} value={tab}></TabPanel>
         <TabPanel idx={3} value={tab}>
