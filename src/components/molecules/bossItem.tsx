@@ -23,7 +23,7 @@ export default function BossItem({ i, type, boss }: Props) {
 
   if (!boss.difficulty.filter(_ => _.period === period).length) return null;
 
-  const selected = character.boss.find(item => item.name === boss.name && item.selected);
+  const selected = character?.boss.find(item => item.name === boss.name && item.selected);
 
   return (
     <Item>
