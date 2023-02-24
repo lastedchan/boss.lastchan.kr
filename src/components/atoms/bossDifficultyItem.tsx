@@ -1,22 +1,28 @@
-import { BOSS_DIFFICULTY_LABEL, BOSS_DIFFICULTY_STYLE } from "@/constants/boss";
+import { BOSS_DIFFICULTY_STYLE } from "@/constants/boss";
 import { Box, Chip } from "@mui/material";
 import { CLEARBOARD } from "@/constants/clearboard";
 import Image from "next/image";
+import { Difficulty } from "@/types/boss";
+import useCharacterList from "@/hooks/useCharacterList";
+import useCharacter from "@/hooks/useCharacter";
 
 type Props = {
-  difficulty: number;
+  type: "select" | "clear";
+  difficulty: Difficulty;
   name: string;
   selected: boolean;
   clear: boolean;
-  toggle: (difficulty: number, name: string) => void;
   disabled?: boolean;
 };
 
-export default function BossDifficultyItem({ difficulty, name, selected, clear, toggle, disabled }: Props) {
+export default function BossDifficultyItem({ type, difficulty, name, selected, clear, disabled }: Props) {
+  const { idx } = useCharacterList();
+  const { toggleSelected, toggleClear } = useCharacter(idx);
+
   return (
     <Box position={"relative"} width={68} height={19}>
       <Chip
-        label={BOSS_DIFFICULTY_LABEL[difficulty].toUpperCase()}
+        label={difficulty.toUpperCase()}
         component={"span"}
         clickable
         sx={{
@@ -28,7 +34,7 @@ export default function BossDifficultyItem({ difficulty, name, selected, clear, 
           "& span": { padding: 0 },
           "&:hover": { textShadow: `0 0 4px ${BOSS_DIFFICULTY_STYLE[difficulty].color}` },
         }}
-        onClick={() => toggle(difficulty, name)}
+        onClick={() => (type === "select" ? toggleSelected : toggleClear)(difficulty, name)}
         disabled={disabled}
       />
       {selected && clear ? (

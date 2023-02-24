@@ -10,14 +10,14 @@ const config: SWRConfiguration = {
   revalidateOnReconnect: false,
 };
 
-export function useBossList(period?: Period) {
-  const { data, error, isLoading } = useSWR(`/api/boss?period=${period ?? ""}`, useAxios<BossList>(), config);
+export function useBossListSWR(period?: Period) {
+  const { data, error, isLoading } = useSWR<BossList>(`/api/boss?period=${period ?? ""}`, useAxios(), config);
 
-  return { bossList: data?.data, error, isLoading };
+  return { bossList: data, error, isLoading };
 }
 
-export function useBoss(id: number, period?: string) {
-  const { data, error, isLoading } = useSWR(`/api/boss/${id}?period=${period ?? ""}`, useAxios<Boss>(), config);
+export function useBossSWR(id: number, period?: string) {
+  const { data, error, isLoading } = useSWR<Boss>(`/api/boss/${id}?period=${period ?? ""}`, useAxios(), config);
 
-  return { boss: data?.data, error, isLoading };
+  return { boss: data, error, isLoading };
 }

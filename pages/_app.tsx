@@ -17,6 +17,18 @@ export default function App({ Component, pageProps }: AppProps) {
       fontFamily: "'NanumGothic', '돋움', 'Dotum', serif",
     },
     components: {
+      MuiInputBase: {
+        styleOverrides: {
+          root: {
+            margin: 4,
+            fontSize: "0.916666rem",
+          },
+          input: {
+            padding: "12px 10px",
+            backgroundColor: "#fff",
+          },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: {
@@ -24,21 +36,21 @@ export default function App({ Component, pageProps }: AppProps) {
             border: "1px solid transparent",
             borderRadius: 8,
             background: "linear-gradient(to top, #790, #cd4) padding-box, linear-gradient(to top, #ab3, #ee8) border-box",
-            boxShadow: "-1px 4px #560, 1px 4px #560",
+            boxShadow: "-1px 4px #560, 1px 4px #560, -1px 2px #560, 1px 2px #560",
             alignItems: "center",
             fontWeight: "bold",
             fontSize: "1.2rem",
             transition:
-              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-            "&:hover, &:active": {
+              "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
+            "&:hover": {
               textShadow: "0 0 8px #fff",
-              boxShadow: "-1px 4px #560, 1px 4px #560",
+              boxShadow: "-1px 4px #560, 1px 4px #560, -1px 2px #560, 1px 2px #560",
               "& .MuiSvgIcon-root": {
                 filter: "drop-shadow(0 0 8px #fff)",
               },
             },
             "&:active": {
-              boxShadow: "-1px 2px #560, 1px 2px #560, -1px -2px #560, 1px -2px #560",
+              boxShadow: "-1px 2px #560, 1px 2px #560, -1px 0 #560, 1px 0 #560",
               transform: "translateY(2px)",
             },
           },

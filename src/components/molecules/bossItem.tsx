@@ -1,26 +1,21 @@
 import { Boss } from "@/types/boss";
-import { BOSS_DIFFICULTY_LABEL, BOSS_IMAGES } from "@/constants/boss";
 import { Box, ListItem, ListItemText } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
 import styled from "@emotion/styled";
-import { useBoss } from "@/swrs/boss";
+import { useBossSWR } from "@/swrs/boss";
 import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
-import useCharacterList from "@/hooks/useCharacterList";
-import useCharacter from "@/hooks/useCharacter";
 import { useRecoilValue } from "recoil";
 import { selectedType } from "@/recoils/clearboard";
 
 type Props = {
   i: number;
-  boss: Boss;
   type: "select" | "clear";
+  boss?: Boss;
 };
 
-export default function BossItem({ i, boss, type }: Props) {
-  const { idx } = useCharacterList();
-  const { selected, clear, toggleSelected, toggleClear } = useCharacter(idx);
+export default function BossItem({ i, type, boss }: Props) {
   const period = useRecoilValue(selectedType);
-  const { boss: data } = useBoss(i, period);
+  const { boss: data } = useBossSWR(i, period);
 
   if (!boss) return null;
 
@@ -29,19 +24,19 @@ export default function BossItem({ i, boss, type }: Props) {
   return (
     <Item>
       <BossName role={"boss-name"}>
-        <BossIcon src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} />
-        <ListItemText sx={{ ml: 0.75 }}>{boss?.name}</ListItemText>
+        <BossIcon src={boss.icon} />
+        <ListItemText sx={{ ml: 0.75 }}>{boss.name}</ListItemText>
       </BossName>
       <DifficultyItem role={"difficulty-item"}>
         {data?.difficulty?.map(item =>
           item && item.period === period ? (
             <BossDifficultyItem
               key={item.difficulty}
-              difficulty={BOSS_DIFFICULTY_LABEL.findIndex(_ => _ === item.difficulty)}
+              type={type}
+              difficulty={item.difficulty}
               name={boss.name}
               selected={true}
               clear={false}
-              toggle={type === "select" ? toggleSelected : toggleClear}
             />
           ) : null
         )}
