@@ -6,18 +6,14 @@ import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import useIsMobile from "@/hooks/useIsMobile";
 import { CLEARBOARD } from "@/constants/clearboard";
-import { useBossListSWR } from "@/swrs/boss";
 import BossItem from "@/components/molecules/bossItem";
-import { useRecoilValue } from "recoil";
-import { selectedType } from "@/recoils/clearboard";
+import { BOSS_LIST } from "@/constants/boss";
 
 type Props = {
   type: "select" | "clear";
 };
 
 export default function BossPanel({ type }: Props) {
-  const period = useRecoilValue(selectedType);
-  const { bossList, error, isLoading } = useBossListSWR(period);
   const isMobile = useIsMobile();
 
   return (
@@ -31,7 +27,9 @@ export default function BossPanel({ type }: Props) {
           <Typography pl={3.5}>난이도</Typography>
         </BossHead>
         <BossBody>
-          {bossList && CLEARBOARD.ORDER.map(i => <BossItem key={i} i={i} type={type} boss={bossList.find(item => item.id === i)} />)}
+          {CLEARBOARD.ORDER.map(i => (
+            <BossItem key={i} i={i} type={type} boss={BOSS_LIST[i]} />
+          ))}
         </BossBody>
       </BossWrapper>
     </Container>

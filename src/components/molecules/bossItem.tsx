@@ -1,45 +1,53 @@
 import { Boss } from "@/types/boss";
-import { Box, ListItem, ListItemText } from "@mui/material";
+import { Box, ListItem, ListItemText, Typography } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
 import styled from "@emotion/styled";
-import { useBossSWR } from "@/swrs/boss";
 import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
 import { useRecoilValue } from "recoil";
 import { selectedType } from "@/recoils/clearboard";
+import { BOSS_IMAGES } from "@/constants/boss";
+import useCharacter from "@/hooks/useCharacter";
+import useCharacterList from "@/hooks/useCharacterList";
 
 type Props = {
   i: number;
   type: "select" | "clear";
-  boss?: Boss;
+  boss: Boss;
 };
 
 export default function BossItem({ i, type, boss }: Props) {
+  const { idx } = useCharacterList();
+  const { character } = useCharacter(idx);
+
   const period = useRecoilValue(selectedType);
-  const { boss: data } = useBossSWR(i, period);
 
-  if (!boss) return null;
+  if (!boss.difficulty.filter(_ => _.period === period).length) return null;
 
-  // console.log(data?.difficulty);
+  const selected = character.boss.find(item => item.name === boss.name && item.selected);
 
   return (
     <Item>
       <BossName role={"boss-name"}>
-        <BossIcon src={boss.icon} />
-        <ListItemText sx={{ ml: 0.75 }}>{boss.name}</ListItemText>
+        <BossIcon src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} />
+        <ListItemText sx={{ ml: 0.75 }}>
+          <Typography>{boss.name}</Typography>
+          {
+            <Typography>
+              {(selected &&
+                (
+                  (boss.difficulty.find(item => item.difficulty === selected.difficulty)?.price ?? 0) / selected.headcount ?? 0
+                ).toLocaleString()) ||
+                0}
+            </Typography>
+          }
+        </ListItemText>
       </BossName>
       <DifficultyItem role={"difficulty-item"}>
-        {data?.difficulty?.map(item =>
-          item && item.period === period ? (
-            <BossDifficultyItem
-              key={item.difficulty}
-              type={type}
-              difficulty={item.difficulty}
-              name={boss.name}
-              selected={true}
-              clear={false}
-            />
-          ) : null
-        )}
+        {boss.difficulty
+          .filter(_ => _.period === period)
+          .map(item => (
+            <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />
+          ))}
       </DifficultyItem>
     </Item>
   );

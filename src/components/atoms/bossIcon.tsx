@@ -1,21 +1,20 @@
 import styled from "@emotion/styled";
 import { CLEARBOARD } from "@/constants/clearboard";
-import { Icon } from "@mui/material";
+import { Box, BoxProps, Icon } from "@mui/material";
 
 type Props = {
   src: string;
 };
 
-export default function BossIcon({ src }: Props) {
+export default function BossIcon({ src, ...props }: BoxProps & Props) {
   return (
-    <Container>
-      {/*<Box sx={{}} />*/}
+    <Container {...props}>
       <Icon sx={{ background: `url(${src})`, fontSize: 25 }} />
     </Container>
   );
 }
 
-const Container = styled.div<{ i?: number }>`
+const Container = styled(Box)<{ i?: number }>`
   padding: 2px;
   width: 29px;
   height: 29px;

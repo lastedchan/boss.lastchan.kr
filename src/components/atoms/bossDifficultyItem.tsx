@@ -2,42 +2,43 @@ import { BOSS_DIFFICULTY_STYLE } from "@/constants/boss";
 import { Box, Chip } from "@mui/material";
 import { CLEARBOARD } from "@/constants/clearboard";
 import Image from "next/image";
-import { Difficulty } from "@/types/boss";
+import { Boss, BossDifficulty } from "@/types/boss";
 import useCharacterList from "@/hooks/useCharacterList";
 import useCharacter from "@/hooks/useCharacter";
 
 type Props = {
   type: "select" | "clear";
-  difficulty: Difficulty;
-  name: string;
-  selected: boolean;
-  clear: boolean;
-  disabled?: boolean;
+  boss: Boss;
+  difficulty: BossDifficulty;
 };
 
-export default function BossDifficultyItem({ type, difficulty, name, selected, clear, disabled }: Props) {
+export default function BossDifficultyItem({ type, boss, difficulty }: Props) {
   const { idx } = useCharacterList();
-  const { toggleSelected, toggleClear } = useCharacter(idx);
+  const { selectedList, clear, toggleSelected, toggleClear } = useCharacter(idx);
+
+  const selected = !!selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+  const checked = !!clear?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+  const disabled = type === "clear" && !selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
 
   return (
     <Box position={"relative"} width={68} height={19}>
       <Chip
-        label={difficulty.toUpperCase()}
+        label={difficulty.difficulty.toUpperCase()}
         component={"span"}
         clickable
         sx={{
-          ...BOSS_DIFFICULTY_STYLE[difficulty],
+          ...BOSS_DIFFICULTY_STYLE[difficulty.difficulty],
           width: "100%",
           height: "100%",
           fontWeight: "bold",
-          filter: `brightness(${selected ? (clear ? 0.5 : 1) : 0.38})`,
+          filter: `brightness(${selected ? (checked ? 0.5 : 1) : 0.38})`,
           "& span": { padding: 0 },
-          "&:hover": { textShadow: `0 0 4px ${BOSS_DIFFICULTY_STYLE[difficulty].color}` },
+          "&:hover": { textShadow: `0 0 4px ${BOSS_DIFFICULTY_STYLE[difficulty.difficulty].color}` },
         }}
-        onClick={() => (type === "select" ? toggleSelected : toggleClear)(difficulty, name)}
+        onClick={() => (type === "select" ? toggleSelected : toggleClear)(difficulty.difficulty, boss.name)}
         disabled={disabled}
       />
-      {selected && clear ? (
+      {selected && checked ? (
         <Image
           src={CLEARBOARD.CLEAR}
           alt={""}
