@@ -14,11 +14,14 @@ type Props = {
 
 export default function BossDifficultyItem({ type, boss, difficulty }: Props) {
   const { idx } = useCharacterList();
-  const { selectedList, clear, toggleSelected, toggleClear } = useCharacter(idx);
+  const { selectedList, clearList, toggleSelected, toggleClear } = useCharacter(idx);
 
   const selected = !!selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
-  const checked = !!clear?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+  const checked =
+    type === "clear" && selected && !!clearList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
   const disabled = type === "clear" && !selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+
+  if (disabled) return null;
 
   return (
     <Box position={"relative"} width={68} height={19}>
@@ -38,10 +41,10 @@ export default function BossDifficultyItem({ type, boss, difficulty }: Props) {
         onClick={() => (type === "select" ? toggleSelected : toggleClear)(difficulty.difficulty, boss.name)}
         disabled={disabled}
       />
-      {selected && checked ? (
+      {checked ? (
         <Image
           src={CLEARBOARD.CLEAR}
-          alt={""}
+          alt={"CLEAR"}
           width={24}
           height={20}
           style={{ position: "absolute", top: 0, left: 0, right: 0, margin: "auto", pointerEvents: "none" }}

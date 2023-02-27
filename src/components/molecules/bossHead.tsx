@@ -6,6 +6,7 @@ export default function BossHead(props: ListItemProps) {
 }
 
 const Head = styled(ListItem)`
+  display: flex;
   padding: 0;
   height: 21px;
   border-top: 1px solid transparent;

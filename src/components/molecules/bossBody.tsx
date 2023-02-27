@@ -1,13 +1,13 @@
-import { Box, List } from "@mui/material";
+import { Box, BoxProps, List } from "@mui/material";
 import styled from "@emotion/styled";
 
 type Props = {
   children?: JSX.Element | (JSX.Element | null)[] | null;
 };
 
-export default function BossBody({ children }: Props) {
+export default function BossBody({ children, ...props }: Props & BoxProps) {
   return (
-    <Container>
+    <Container {...props}>
       <Wrapper>{children}</Wrapper>
     </Container>
   );
@@ -16,29 +16,11 @@ export default function BossBody({ children }: Props) {
 const Container = styled(Box)`
   flex: 1;
   width: 100%;
-  height: 100%;
-  background: #555;
-  overflow: auto;
 `;
 
 const Wrapper = styled(List)`
   padding: 0;
   width: 100%;
+  min-height: 43px;
   overflow: hidden;
-
-  & > li:first-of-type {
-    padding-top: 4px;
-  }
-
-  & > li:last-of-type {
-    padding-bottom: 4px;
-  }
-
-  & li:nth-of-type(2n + 1) {
-    background-color: #555;
-  }
-
-  & li:nth-of-type(2n) {
-    background-color: #444;
-  }
 `;
