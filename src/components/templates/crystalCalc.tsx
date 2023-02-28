@@ -2,12 +2,13 @@ import styled from "@emotion/styled";
 import BossTabs from "@/components/molecules/bossTabs";
 import BossTab from "@/components/atoms/bossTab";
 import { useState } from "react";
-import TabPanel from "@/components/molecules/tabPanel";
+import TabPanel from "@/components/organisms/tabPanel";
 import CharacterTabs from "@/components/organisms/characterTabs";
 import { inRange } from "lodash";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Settings from "@/components/organisms/settings";
-import BossPanel from "@/components/molecules/bossPanel";
+import BossPanel from "@/components/organisms/bossPanel";
+import Summary from "@/components/organisms/summary";
 
 export default function CrystalCalc() {
   const [tab, setTab] = useState(0);
@@ -28,7 +29,9 @@ export default function CrystalCalc() {
         <TabPanel idx={1} value={tab}>
           <BossPanel type={"clear"} />
         </TabPanel>
-        <TabPanel idx={2} value={tab}></TabPanel>
+        <TabPanel idx={2} value={tab}>
+          <Summary />
+        </TabPanel>
         <TabPanel idx={3} value={tab}>
           <Settings />
         </TabPanel>
@@ -44,6 +47,7 @@ const Container = styled.div`
   margin: auto;
   padding: 8px;
   max-width: 720px;
+  max-height: 920px;
   width: 100%;
   height: 100%;
   justify-content: flex-start;

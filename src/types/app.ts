@@ -1,1 +1,1 @@
-export type Pages = { path: string; title: string; description: string; image?: string }[];
+export type Pages = { path: string; title: string; description: string; image?: string; favicon?: string }[];

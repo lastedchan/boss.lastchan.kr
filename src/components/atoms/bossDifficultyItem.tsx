@@ -17,8 +17,7 @@ export default function BossDifficultyItem({ type, boss, difficulty }: Props) {
   const { selectedList, clearList, toggleSelected, toggleClear } = useCharacter(idx);
 
   const selected = !!selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
-  const checked =
-    type === "clear" && selected && !!clearList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+  const checked = selected && !!clearList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
   const disabled = type === "clear" && !selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
 
   if (disabled) return null;

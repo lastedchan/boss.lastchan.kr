@@ -3,25 +3,29 @@ import BossTab from "@/components/atoms/bossTab";
 import { useEffect, useState } from "react";
 import useCharacterList from "@/hooks/useCharacterList";
 import CharacterContextMenu from "@/components/molecules/characterContextMenu";
-import { isNumber } from "lodash";
+import { inRange, isNumber } from "lodash";
 import { Box } from "@mui/material";
+import { useRecoilValue } from "recoil";
+import { characterListRecoil } from "@/recoils/clearboard";
 
 export default function CharacterTabs() {
-  const { characterList, idx, setIdx, addCharacter } = useCharacterList();
+  const { idx, setIdx, addCharacter } = useCharacterList();
+  const characterList = useRecoilValue(characterListRecoil);
 
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (characterList.length === 0) addCharacter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [addCharacter, characterList.length]);
+
+  if (!inRange(idx, 0, characterList.length)) return null;
 
   return (
     <Box display={"flex"}>
       <BossTabs value={idx} onChange={(e, v) => isNumber(v) && v >= 0 && setIdx(v)} variant={"scrollable"} sx={{ gridColumn: "1 / -1" }}>
         {characterList.map((item, i) => (
           <BossTab
-            key={i}
+            key={item.id}
             data-idx={i}
             label={item.name}
             value={i}

@@ -31,6 +31,7 @@
 }
 
 ::-webkit-scrollbar {
+    display: none;
     width: 10px;
 }
 
@@ -74,4 +75,9 @@ li {
 
 [hidden] {
     display: none !important;
+}
+
+[role=number] {
+    text-align: right;
+    font-family: 'Consolas', serif !important;
 }

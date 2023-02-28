@@ -2,11 +2,10 @@ import { ListItem, ListItemProps } from "@mui/material";
 import styled from "@emotion/styled";
 
 export default function BossHead(props: ListItemProps) {
-  return <Head {...props} />;
+  return <Head role={"boss-head"} {...props} />;
 }
 
 const Head = styled(ListItem)`
-  display: flex;
   padding: 0;
   height: 21px;
   border-top: 1px solid transparent;

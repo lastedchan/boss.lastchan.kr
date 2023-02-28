@@ -17,7 +17,7 @@ type Props = {
 
 export default function BossItem({ i, type, boss }: Props) {
   const { idx } = useCharacterList();
-  const { selectedList, clearList } = useCharacter(idx);
+  const { selectedList, clearList, setHeadcount } = useCharacter(idx);
   const isReboot = useRecoilValue(isRebootRecoil);
 
   const period = useRecoilValue(selectedType);
@@ -34,9 +34,28 @@ export default function BossItem({ i, type, boss }: Props) {
       <BossName role={"boss-name"}>
         <BossIcon src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} />
         <ListItemText sx={{ ml: 0.75 }}>
-          <Typography overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
-            {boss.name}
-          </Typography>
+          <Box display={"flex"}>
+            <Typography overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
+              {boss.name}
+            </Typography>
+            {selected && (
+              <Typography
+                flex={"0 0 32px"}
+                textAlign={"right"}
+                fontSize={"1.05rem"}
+                sx={{ cursor: "pointer" }}
+                onClick={() =>
+                  setHeadcount(
+                    selected.difficulty,
+                    selected.name,
+                    Number(prompt("1부터 6 사이의 수를 입력해주세요.", String(selected.headcount)) ?? selected.headcount)
+                  )
+                }
+              >
+                ({selected.headcount + "인"})
+              </Typography>
+            )}
+          </Box>
         </ListItemText>
       </BossName>
       <DifficultyItem role={"difficulty-item"}>
@@ -46,12 +65,12 @@ export default function BossItem({ i, type, boss }: Props) {
             <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />
           ))}
       </DifficultyItem>
-      <Box flex={"0 0 100px"} p={"0 8px"} textAlign={"right"}>
-        <Typography sx={{ opacity: type === "clear" && clear ? 1 : 0.38 }}>
+      <Box display={"flex"} p={"0 4px"} justifyContent={"flex-end"}>
+        <Typography role={"number"} flex={1} sx={{ opacity: clear ? 1 : 0.38 }}>
           {(selected &&
-            (
+            Math.floor(
               ((boss.difficulty.find(item => item.difficulty === selected.difficulty)?.price ?? 0) * (isReboot ? 5 : 1)) /
-                selected.headcount ?? 0
+                selected.headcount
             ).toLocaleString()) ||
             0}
         </Typography>
@@ -61,7 +80,9 @@ export default function BossItem({ i, type, boss }: Props) {
 }
 
 const Item = styled(ListItem)`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: minmax(75px, 176px) minmax(84px, 1fr) 100px;
   padding: 0;
   width: 100%;
   min-height: 35px;
@@ -98,7 +119,7 @@ const Item = styled(ListItem)`
 `;
 
 const BossName = styled(Box)`
-  flex: 0 1 144px;
+  //flex: 0 1 144px;
   display: grid;
   grid-template-columns: 29px 1fr;
   padding: 0 4px;
@@ -108,7 +129,7 @@ const BossName = styled(Box)`
 `;
 
 const DifficultyItem = styled(Box)`
-  flex: 1 0 84px;
+  //flex: 1 0 84px;
   display: flex;
   gap: 8px;
   padding: 8px 8px 8px 8px;

@@ -7,5 +7,5 @@ export type SelectedBoss = {
   headcount: number;
   clear: boolean;
 };
-export type Character = { name: string; boss: SelectedBoss[] };
+export type Character = { id: number; name: string; boss: SelectedBoss[] };
 export type CharacterList = Character[];

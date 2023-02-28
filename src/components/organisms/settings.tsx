@@ -1,16 +1,22 @@
 import styled from "@emotion/styled";
-import { List, ListItem, ListItemText, Switch, Typography } from "@mui/material";
-import { useRecoilState } from "recoil";
-import { isRebootRecoil } from "@/recoils/clearboard";
+import { Button, Divider, List, ListItem, ListItemText, Switch, Typography } from "@mui/material";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { characterListRecoil, isRebootRecoil } from "@/recoils/clearboard";
 import BossWrapper from "@/components/molecules/bossWrapper";
 import BossHead from "@/components/molecules/bossHead";
+import useCharacterList from "@/hooks/useCharacterList";
+import { useCallback } from "react";
 
 export default function Settings() {
   const [isReboot, setIsReboot] = useRecoilState(isRebootRecoil);
+  const { resetClear } = useCharacterList();
+  const setCharacterList = useSetRecoilState(characterListRecoil);
+
+  const reset = useCallback(() => setCharacterList([]), [setCharacterList]);
 
   return (
     <Container>
-      <BossWrapper>
+      <BossWrapper flex={1}>
         <BossHead style={{ padding: "0 16px" }}>
           <Typography flex={1} pl={1}>
             항목
@@ -23,6 +29,19 @@ export default function Settings() {
           <ListItemText>리부트</ListItemText>
           <ListItemText>
             <Switch checked={isReboot} onChange={(e, v) => setIsReboot(v)} />
+          </ListItemText>
+        </Item>
+        <Divider />
+        <Item>
+          <ListItemText>클리어 현황 초기화</ListItemText>
+          <ListItemText sx={{ textAlign: "center" }}>
+            <Button onClick={() => confirm("정말로 클리어 현황을 초기화하시겠습니까?") && resetClear()}>초기화</Button>
+          </ListItemText>
+        </Item>
+        <Item>
+          <ListItemText>전체 초기화</ListItemText>
+          <ListItemText sx={{ textAlign: "center" }}>
+            <Button onClick={() => confirm("정말로 수익 계산기를 초기화하시겠습니까?") && reset()}>초기화</Button>
           </ListItemText>
         </Item>
       </BossWrapper>

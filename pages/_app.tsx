@@ -32,14 +32,15 @@ export default function App({ Component, pageProps }: AppProps) {
       MuiButton: {
         styleOverrides: {
           root: {
-            display: "flex",
             border: "1px solid transparent",
             borderRadius: 8,
             background: "linear-gradient(to top, #790, #cd4) padding-box, linear-gradient(to top, #ab3, #ee8) border-box",
             boxShadow: "-1px 4px #560, 1px 4px #560, -1px 2px #560, 1px 2px #560",
             alignItems: "center",
+            color: "#fff",
             fontWeight: "bold",
             fontSize: "1.2rem",
+            transform: "translateY(-2px)",
             transition:
               "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
             "&:hover": {
@@ -51,7 +52,7 @@ export default function App({ Component, pageProps }: AppProps) {
             },
             "&:active": {
               boxShadow: "-1px 2px #560, 1px 2px #560, -1px 0 #560, 1px 0 #560",
-              transform: "translateY(2px)",
+              transform: "translateY(0)",
             },
           },
         },
@@ -92,6 +93,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta property={"og:title"} content={page?.title} />
         <meta property={"og:description"} content={page?.description} />
         <meta property={"og:image"} content={page?.image} />
+        <link rel="icon" href={page?.favicon} type="image/png" />
         <title>{TITLE + " " + (page?.title ?? "")}</title>
       </Head>
       <ThemeProvider theme={theme}>
