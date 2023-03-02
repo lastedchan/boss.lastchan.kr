@@ -42,7 +42,6 @@ export default function BossItem({ i, type, boss }: Props) {
               <Typography
                 flex={"0 0 32px"}
                 textAlign={"right"}
-                fontSize={"1.05rem"}
                 sx={{ cursor: "pointer" }}
                 onClick={() =>
                   setHeadcount(

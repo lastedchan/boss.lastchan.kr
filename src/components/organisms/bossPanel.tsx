@@ -51,7 +51,7 @@ export default function BossPanel({ type }: Props) {
           <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
             <List sx={{ flex: 1, p: 0 }}>
               <BossHead sx={{ justifyContent: "center" }}>
-                <Typography p={"0 8px"}>총 판매 결정석</Typography>
+                <Typography p={"0 8px"}>최대 판매 결정석</Typography>
               </BossHead>
               <ListItem sx={{ p: "4px 0", bgcolor: "#555", justifyContent: "center" }}>
                 <Typography textAlign={"right"}>{totalAmount}</Typography>
@@ -59,7 +59,7 @@ export default function BossPanel({ type }: Props) {
             </List>
             <List sx={{ flex: 1, p: 0 }}>
               <BossHead sx={{ justifyContent: "center" }}>
-                <Typography p={"0 8px"}>총 주간 수익</Typography>
+                <Typography p={"0 8px"}>최대 주간 수익</Typography>
               </BossHead>
               <ListItem sx={{ p: "4px 0", bgcolor: "#555", justifyContent: "center" }}>
                 <Typography textAlign={"right"}>{totalPrice.toLocaleString()}</Typography>

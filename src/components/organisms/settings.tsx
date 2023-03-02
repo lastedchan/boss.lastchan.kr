@@ -16,7 +16,7 @@ export default function Settings() {
 
   return (
     <Container>
-      <BossWrapper flex={1}>
+      <BossWrapper flex={1} sx={{ "& > ul": { minHeight: "100%" } }}>
         <BossHead style={{ padding: "0 16px" }}>
           <Typography flex={1} pl={1}>
             항목
@@ -43,6 +43,10 @@ export default function Settings() {
           <ListItemText sx={{ textAlign: "center" }}>
             <Button onClick={() => confirm("정말로 수익 계산기를 초기화하시겠습니까?") && reset()}>초기화</Button>
           </ListItemText>
+        </Item>
+        <Item sx={{ flex: 1 }}></Item>
+        <Item>
+          <ListItemText sx={{ justifyContent: "center" }}>Copyright 2023. LASTCHAN All rights reserved.</ListItemText>
         </Item>
       </BossWrapper>
     </Container>

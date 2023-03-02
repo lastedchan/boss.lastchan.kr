@@ -3,8 +3,10 @@ import BossHead from "@/components/molecules/bossHead";
 import { Box, Divider, List, ListItem, Typography } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { characterListRecoil } from "@/recoils/clearboard";
-import SummaryItem from "@/components/atoms/summaryItem";
+import SummaryItem from "@/components/molecules/summaryItem";
 import useCharacterList from "@/hooks/useCharacterList";
+import SummaryMeso from "@/components/atoms/summaryMeso";
+import SummaryCrystal from "@/components/atoms/summaryCrystal";
 
 export default function Summary() {
   const characterList = useRecoilValue(characterListRecoil);
@@ -37,12 +39,8 @@ export default function Summary() {
         <Divider />
         <ListItem sx={{ position: "sticky", bottom: 0, p: "8px 0" }} hidden={!characterList.length}>
           <Typography />
-          <Typography role={"number"}>
-            {soldAmount}/{totalAmount}
-          </Typography>
-          <Typography role={"number"}>
-            {soldPrice.toLocaleString().padStart(13, " ")} / {totalPrice.toLocaleString().padStart(13, " ")}
-          </Typography>
+          <SummaryCrystal soldAmount={soldAmount} totalAmount={totalAmount} />
+          <SummaryMeso soldPrice={soldPrice} totalPrice={totalPrice} />
         </ListItem>
       </BossWrapper>
       <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
