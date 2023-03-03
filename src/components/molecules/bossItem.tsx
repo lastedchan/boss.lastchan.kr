@@ -8,26 +8,28 @@ import { isRebootRecoil, selectedType } from "@/recoils/clearboard";
 import { BOSS_IMAGES } from "@/constants/boss";
 import useCharacter from "@/hooks/useCharacter";
 import useCharacterList from "@/hooks/useCharacterList";
+import { PanelType } from "@/types/crystalCalc";
+import HeadcountItem from "@/components/atoms/headcountItem";
 
 type Props = {
   i: number;
-  type: "select" | "clear";
+  type: PanelType;
   boss: Boss;
 };
 
 export default function BossItem({ i, type, boss }: Props) {
   const { idx } = useCharacterList();
-  const { selectedList, clearList, setHeadcount } = useCharacter(idx);
+  const { selectedList, clearList } = useCharacter(idx);
   const isReboot = useRecoilValue(isRebootRecoil);
 
   const period = useRecoilValue(selectedType);
 
-  const selected = selectedList.find(
+  const selectedItem = selectedList.find(
     item => item.name === boss.name && boss.difficulty.find(_ => _.difficulty === item.difficulty)?.period === period
   );
   const clear = clearList.find(item => item.name === boss.name);
 
-  if (!boss.difficulty.filter(_ => _.period === period).length || (type === "clear" && !selected)) return null;
+  if (!boss.difficulty.filter(_ => _.period === period).length || (type !== "select" && !selectedItem)) return null;
 
   return (
     <Item>
@@ -38,38 +40,27 @@ export default function BossItem({ i, type, boss }: Props) {
             <Typography overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
               {boss.name}
             </Typography>
-            {selected && (
-              <Typography
-                flex={"0 0 32px"}
-                textAlign={"right"}
-                sx={{ cursor: "pointer" }}
-                onClick={() =>
-                  setHeadcount(
-                    selected.difficulty,
-                    selected.name,
-                    Number(prompt("1부터 6 사이의 수를 입력해주세요.", String(selected.headcount)) ?? selected.headcount)
-                  )
-                }
-              >
-                ({selected.headcount + "인"})
+            {selectedItem && (
+              <Typography flex={"0 0 32px"} textAlign={"right"}>
+                ({selectedItem.headcount + "인"})
               </Typography>
             )}
           </Box>
         </ListItemText>
       </BossName>
       <DifficultyItem role={"difficulty-item"}>
-        {boss.difficulty
-          .filter(_ => _.period === period)
-          .map(item => (
-            <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />
-          ))}
+        {type === "headcount"
+          ? selectedItem && <HeadcountItem item={selectedItem} />
+          : boss.difficulty
+              .filter(_ => _.period === period)
+              .map(item => <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />)}
       </DifficultyItem>
       <Box display={"flex"} p={"0 4px"} justifyContent={"flex-end"}>
         <Typography role={"number"} flex={1} sx={{ opacity: clear ? 1 : 0.38 }}>
-          {(selected &&
+          {(selectedItem &&
             Math.floor(
-              ((boss.difficulty.find(item => item.difficulty === selected.difficulty)?.price ?? 0) * (isReboot ? 5 : 1)) /
-                selected.headcount
+              ((boss.difficulty.find(item => item.difficulty === selectedItem.difficulty)?.price ?? 0) * (isReboot ? 5 : 1)) /
+                selectedItem.headcount
             ).toLocaleString()) ||
             0}
         </Typography>
@@ -118,7 +109,6 @@ const Item = styled(ListItem)`
 `;
 
 const BossName = styled(Box)`
-  //flex: 0 1 144px;
   display: grid;
   grid-template-columns: 29px 1fr;
   padding: 0 4px;
@@ -128,7 +118,6 @@ const BossName = styled(Box)`
 `;
 
 const DifficultyItem = styled(Box)`
-  //flex: 1 0 84px;
   display: flex;
   gap: 8px;
   padding: 8px 8px 8px 8px;

@@ -1,15 +1,16 @@
 import styled from "@emotion/styled";
 import { Box, BoxProps } from "@mui/material";
+import { isArray } from "lodash";
 
 type Props = {
-  idx: number;
-  value: number;
+  tab: any;
+  value: any;
   children?: JSX.Element | (JSX.Element | null)[] | null;
 };
 
-export default function TabPanel({ idx, value, children, ...props }: Props & BoxProps) {
+export default function TabPanel({ tab, value, children, ...props }: Props & BoxProps) {
   return (
-    <Container hidden={idx !== value} {...props}>
+    <Container hidden={isArray(tab) ? !tab.find(_ => _ === value) : tab !== value} {...props}>
       {children}
     </Container>
   );

@@ -9,20 +9,20 @@ const Item = styled(Tab)`
   min-width: unset;
   min-height: unset;
   background-image: linear-gradient(#666, #111);
-  align-items: flex-start;
   color: #fff;
   font-weight: bold;
-  //width: 187px;
   height: 27px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  align-items: center;
 
-  .MuiTabs-vertical & {
+  .MuiTabs-flexContainerVertical > & {
     width: 94px;
     height: 29px;
     border-top-left-radius: 6px;
     border-top-right-radius: 0;
     border-bottom-left-radius: 6px;
+    align-items: flex-start;
     box-shadow: 0 2px 0 0 #111;
   }
 

@@ -3,16 +3,18 @@ import BossWrapper from "@/components/molecules/bossWrapper";
 import BossHead from "@/components/molecules/bossHead";
 import BossBody from "@/components/molecules/bossBody";
 import styled from "@emotion/styled";
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import useIsMobile from "@/hooks/useIsMobile";
 import { CLEARBOARD } from "@/constants/clearboard";
 import BossItem from "@/components/molecules/bossItem";
 import { BOSS_LIST } from "@/constants/boss";
 import useCharacter from "@/hooks/useCharacter";
 import useCharacterList from "@/hooks/useCharacterList";
+import { PanelType } from "@/types/crystalCalc";
+import BossModal from "@/components/organisms/bossModal";
 
 type Props = {
-  type: "select" | "clear";
+  type: PanelType;
 };
 
 export default function BossPanel({ type }: Props) {
@@ -47,43 +49,15 @@ export default function BossPanel({ type }: Props) {
         </BossBody>
       </BossWrapper>
       <Box gridColumn={"1 / -1"}>
-        {type === "select" ? (
+        {type !== "clear" ? (
           <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
-            <List sx={{ flex: 1, p: 0 }}>
-              <BossHead sx={{ justifyContent: "center" }}>
-                <Typography p={"0 8px"}>최대 판매 결정석</Typography>
-              </BossHead>
-              <ListItem sx={{ p: "4px 0", bgcolor: "#555", justifyContent: "center" }}>
-                <Typography textAlign={"right"}>{totalAmount}</Typography>
-              </ListItem>
-            </List>
-            <List sx={{ flex: 1, p: 0 }}>
-              <BossHead sx={{ justifyContent: "center" }}>
-                <Typography p={"0 8px"}>최대 주간 수익</Typography>
-              </BossHead>
-              <ListItem sx={{ p: "4px 0", bgcolor: "#555", justifyContent: "center" }}>
-                <Typography textAlign={"right"}>{totalPrice.toLocaleString()}</Typography>
-              </ListItem>
-            </List>
+            <BossModal title={"최대 판매 결정석"} content={totalAmount} sx={{ flex: 1, p: 0 }} />
+            <BossModal title={"최대 주간 수익"} content={totalPrice.toLocaleString()} sx={{ flex: 1, p: 0 }} />
           </Box>
         ) : (
           <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
-            <List sx={{ flex: 1, p: 0 }}>
-              <BossHead sx={{ justifyContent: "center" }}>
-                <Typography p={"0 8px"}>판매한 결정석</Typography>
-              </BossHead>
-              <ListItem sx={{ p: "4px 0", bgcolor: "#555", justifyContent: "center" }}>
-                <Typography textAlign={"right"}>{soldAmount}</Typography>
-              </ListItem>
-            </List>
-            <List sx={{ flex: 1, p: 0 }}>
-              <BossHead sx={{ justifyContent: "center" }}>
-                <Typography p={"0 8px"}>이번 주 수익</Typography>
-              </BossHead>
-              <ListItem sx={{ p: "4px 0", bgcolor: "#555", justifyContent: "center" }}>
-                <Typography textAlign={"right"}>{soldPrice.toLocaleString()}</Typography>
-              </ListItem>
-            </List>
+            <BossModal title={"판매한 결정석"} content={soldAmount} sx={{ flex: 1, p: 0 }} />
+            <BossModal title={"이번 주 수익"} content={soldPrice.toLocaleString()} sx={{ flex: 1, p: 0 }} />
           </Box>
         )}
       </Box>

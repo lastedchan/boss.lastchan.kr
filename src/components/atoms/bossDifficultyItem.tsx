@@ -5,9 +5,10 @@ import Image from "next/image";
 import { Boss, BossDifficulty } from "@/types/boss";
 import useCharacterList from "@/hooks/useCharacterList";
 import useCharacter from "@/hooks/useCharacter";
+import { PanelType } from "@/types/crystalCalc";
 
 type Props = {
-  type: "select" | "clear";
+  type: PanelType;
   boss: Boss;
   difficulty: BossDifficulty;
 };

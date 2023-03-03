@@ -21,7 +21,7 @@ export default function CharacterTabs() {
   if (!inRange(idx, 0, characterList.length)) return null;
 
   return (
-    <Box display={"flex"}>
+    <Box>
       <BossTabs value={idx} onChange={(e, v) => isNumber(v) && v >= 0 && setIdx(v)} variant={"scrollable"} sx={{ gridColumn: "1 / -1" }}>
         {characterList.map((item, i) => (
           <BossTab
