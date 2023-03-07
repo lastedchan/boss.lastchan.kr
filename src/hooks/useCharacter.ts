@@ -66,6 +66,7 @@ export default function useCharacter(idx: number) {
       }
       const idx = character?.boss.findIndex(item => item.difficulty === difficulty && item.name === name);
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, idx, { ...prev.boss[idx], headcount: headcount }) }));
+      return true;
     },
     [character?.boss, setCharacter]
   );

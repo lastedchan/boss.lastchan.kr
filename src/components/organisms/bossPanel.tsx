@@ -49,17 +49,18 @@ export default function BossPanel({ type }: Props) {
         </BossBody>
       </BossWrapper>
       <Box gridColumn={"1 / -1"}>
-        {type !== "clear" ? (
-          <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
-            <BossModal title={"최대 판매 결정석"} content={totalAmount} sx={{ flex: 1, p: 0 }} />
-            <BossModal title={"최대 주간 수익"} content={totalPrice.toLocaleString()} sx={{ flex: 1, p: 0 }} />
-          </Box>
-        ) : (
-          <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
-            <BossModal title={"판매한 결정석"} content={soldAmount} sx={{ flex: 1, p: 0 }} />
-            <BossModal title={"이번 주 수익"} content={soldPrice.toLocaleString()} sx={{ flex: 1, p: 0 }} />
-          </Box>
-        )}
+        <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
+          <BossModal
+            title={type !== "clear" ? "최대 판매 결정석" : "판매한 결정석"}
+            content={type !== "clear" ? totalAmount : soldAmount}
+            sx={{ flex: 1, p: 0 }}
+          />
+          <BossModal
+            title={type !== "clear" ? "최대 주간 수익" : "이번 주 수익"}
+            content={(type !== "clear" ? totalPrice : soldPrice).toLocaleString()}
+            sx={{ flex: 1, p: 0 }}
+          />
+        </Box>
       </Box>
     </Container>
   );

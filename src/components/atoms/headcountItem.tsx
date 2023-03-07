@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 import { SelectedBoss } from "@/types/crystalCalc";
 import useCharacterList from "@/hooks/useCharacterList";
 import useCharacter from "@/hooks/useCharacter";
@@ -11,21 +11,17 @@ export default function HeadcountItem({ item }: Props) {
   const { idx } = useCharacterList();
   const { setHeadcount } = useCharacter(idx);
   return (
-    <Box>
-      <Typography
-        textAlign={"right"}
-        lineHeight={"19px"}
-        sx={{ cursor: "pointer" }}
-        onClick={() =>
-          setHeadcount(
-            item.difficulty,
-            item.name,
-            Number(prompt("1부터 6 사이의 수를 입력해주세요.", String(item.headcount)) ?? item.headcount)
-          )
-        }
-      >
-        ({item.headcount + "인"})
-      </Typography>
-    </Box>
+    <Select
+      value={item.headcount}
+      onChange={e => setHeadcount(item.difficulty, item.name, e.target.value as number)}
+      sx={{ m: 0, width: "68px", "& > .MuiSelect-select": { pt: 0, pb: 0, height: 17, lineHeight: "17px" } }}
+    >
+      <MenuItem value={1}>1인</MenuItem>
+      <MenuItem value={2}>2인</MenuItem>
+      <MenuItem value={3}>3인</MenuItem>
+      <MenuItem value={4}>4인</MenuItem>
+      <MenuItem value={5}>5인</MenuItem>
+      <MenuItem value={6}>6인</MenuItem>
+    </Select>
   );
 }
