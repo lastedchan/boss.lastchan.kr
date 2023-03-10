@@ -6,19 +6,21 @@ export default function BossTab(props: TabProps) {
 }
 
 const Item = styled(Tab)`
+  padding: 3px 8px;
   min-width: unset;
   min-height: unset;
-  background-image: linear-gradient(#666, #111);
-  color: #fff;
-  font-weight: bold;
-  height: 27px;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  background-image: linear-gradient(#666, #111);
   align-items: center;
+  word-break: keep-all;
+  line-height: 2;
+  font-weight: bold;
+  color: #fff;
 
   .MuiTabs-flexContainerVertical > & {
     width: 94px;
-    height: 29px;
+    height: 27px;
     border-top-left-radius: 6px;
     border-top-right-radius: 0;
     border-bottom-left-radius: 6px;

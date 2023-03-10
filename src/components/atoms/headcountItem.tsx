@@ -14,7 +14,14 @@ export default function HeadcountItem({ item }: Props) {
     <Select
       value={item.headcount}
       onChange={e => setHeadcount(item.difficulty, item.name, e.target.value as number)}
-      sx={{ m: 0, width: "68px", "& > .MuiSelect-select": { pt: 0, pb: 0, height: 17, lineHeight: "17px" } }}
+      sx={{
+        m: 0,
+        width: 68,
+        height: 19,
+        fontSize: "0.75rem",
+        "& > .MuiSelect-select": { pt: 0, pb: 0, height: 17, lineHeight: "17px" },
+        "& > .MuiSelect-icon": { width: 19 },
+      }}
     >
       <MenuItem value={1}>1인</MenuItem>
       <MenuItem value={2}>2인</MenuItem>
