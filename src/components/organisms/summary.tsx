@@ -20,7 +20,7 @@ export default function Summary() {
           "& .MuiListItem-root": {
             display: "grid",
             gridAutoFlow: "column",
-            gridTemplateColumns: "minmax(48px, 1fr) 52px minmax(220px, 1fr)",
+            gridTemplateColumns: "minmax(54px, 1fr) 52px minmax(180px, 1fr)",
           },
         }}
       >

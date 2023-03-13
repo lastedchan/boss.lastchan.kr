@@ -17,9 +17,8 @@ export default function HeadcountItem({ item }: Props) {
       sx={{
         m: 0,
         width: 68,
-        height: 19,
         fontSize: "0.75rem",
-        "& > .MuiSelect-select": { pt: 0, pb: 0, height: 17, lineHeight: "17px" },
+        "& > .MuiSelect-select": { pt: 0, pb: 0, height: "17px !important", lineHeight: "17px !important" },
         "& > .MuiSelect-icon": { width: 19 },
       }}
     >

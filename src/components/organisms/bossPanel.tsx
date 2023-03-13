@@ -70,7 +70,6 @@ const Container = styled(Box)`
   display: grid;
   row-gap: 8px;
   margin: 0 auto;
-  max-width: 720px;
   width: 100%;
   height: 100%;
   overflow: hidden;

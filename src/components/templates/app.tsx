@@ -51,7 +51,7 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
       MuiDivider: {
         styleOverrides: {
           root: {
-            borderColor: "rgba(255,255,255,0.12)",
+            borderColor: "rgba(127,127,127,0.3)",
           },
         },
       },
