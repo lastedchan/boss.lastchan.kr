@@ -23,6 +23,7 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
       MuiButton: {
         styleOverrides: {
           root: {
+            margin: "4px",
             border: "1px solid transparent",
             borderRadius: 8,
             background: "linear-gradient(to top, #790, #cd4) padding-box, linear-gradient(to top, #ab3, #ee8) border-box",

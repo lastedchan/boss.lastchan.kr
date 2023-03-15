@@ -1,16 +1,17 @@
 import styled from "@emotion/styled";
 import { Button, Divider, List, ListItem, ListItemText, Switch, Typography } from "@mui/material";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { characterListRecoil, isRebootRecoil } from "@/recoils/clearboard";
 import BossWrapper from "@/components/molecules/bossWrapper";
 import BossHead from "@/components/molecules/bossHead";
 import useCharacterList from "@/hooks/useCharacterList";
 import { useCallback } from "react";
+import TextareaModal from "@/components/molecules/textareaModal";
 
 export default function Settings() {
   const [isReboot, setIsReboot] = useRecoilState(isRebootRecoil);
   const { resetClear } = useCharacterList();
-  const setCharacterList = useSetRecoilState(characterListRecoil);
+  const [characterList, setCharacterList] = useRecoilState(characterListRecoil);
 
   const reset = useCallback(() => setCharacterList([]), [setCharacterList]);
 
@@ -32,6 +33,34 @@ export default function Settings() {
           </ListItemText>
         </Item>
         <Divider />
+        <ListItem sx={{ justifyContent: "center" }}>
+          <Typography variant={"h5"}>데이터</Typography>
+        </ListItem>
+        <Item>
+          <ListItemText>내보내기</ListItemText>
+          <ListItemText sx={{ textAlign: "center" }}>
+            <Button
+              onClick={() =>
+                navigator.clipboard
+                  .writeText(JSON.stringify(characterList))
+                  .catch(() => alert("데이터 복사에 실패했습니다. 다시 시도해주세요."))
+                  .then(() => alert("데이터 복사가 완료되었습니다. 저장할 곳에 붙여넣기해주세요."))
+              }
+            >
+              내보내기
+            </Button>
+          </ListItemText>
+        </Item>
+        <Item>
+          <ListItemText>가져오기</ListItemText>
+          <ListItemText sx={{ textAlign: "center" }}>
+            <TextareaModal title={"가져오기"} />
+          </ListItemText>
+        </Item>
+        <Divider />
+        <ListItem sx={{ justifyContent: "center" }}>
+          <Typography variant={"h5"}>초기화</Typography>
+        </ListItem>
         <Item>
           <ListItemText>클리어 현황 초기화</ListItemText>
           <ListItemText sx={{ textAlign: "center" }}>
