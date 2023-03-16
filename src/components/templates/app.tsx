@@ -36,6 +36,7 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
             transition:
               "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
             "&:hover": {
+              borderColor: "transparent",
               textShadow: "0 0 8px #fff",
               boxShadow: "-1px 4px #560, 1px 4px #560, -1px 2px #560, 1px 2px #560",
               "& .MuiSvgIcon-root": {

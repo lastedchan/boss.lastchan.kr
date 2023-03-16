@@ -7,6 +7,7 @@ import BossHead from "@/components/molecules/bossHead";
 import useCharacterList from "@/hooks/useCharacterList";
 import { useCallback } from "react";
 import TextareaModal from "@/components/molecules/textareaModal";
+import Link from "next/link";
 
 export default function Settings() {
   const [isReboot, setIsReboot] = useRecoilState(isRebootRecoil);
@@ -14,6 +15,16 @@ export default function Settings() {
   const [characterList, setCharacterList] = useRecoilState(characterListRecoil);
 
   const reset = useCallback(() => setCharacterList([]), [setCharacterList]);
+
+  const importCharacterList = (v: string) => {
+    try {
+      const data = JSON.parse(v);
+      setCharacterList(data);
+      alert("가져오기에 성공했습니다.");
+    } catch (e) {
+      alert("데이터에 오류가 발생했습니다.\n다시 확인 후 입력해주세요.");
+    }
+  };
 
   return (
     <Container>
@@ -30,6 +41,15 @@ export default function Settings() {
           <ListItemText>리부트</ListItemText>
           <ListItemText>
             <Switch checked={isReboot} onChange={(e, v) => setIsReboot(v)} />
+          </ListItemText>
+        </Item>
+        <Divider />
+        <Item>
+          <ListItemText>후원하기</ListItemText>
+          <ListItemText>
+            <Link href={"https://toss.me/lastchan"} target={"_blank"}>
+              <Button>TOSS</Button>
+            </Link>
           </ListItemText>
         </Item>
         <Divider />
@@ -54,7 +74,7 @@ export default function Settings() {
         <Item>
           <ListItemText>가져오기</ListItemText>
           <ListItemText sx={{ textAlign: "center" }}>
-            <TextareaModal title={"가져오기"} />
+            <TextareaModal title={"가져오기"} submit={importCharacterList} />
           </ListItemText>
         </Item>
         <Divider />

@@ -2,6 +2,8 @@ import { Pages } from "@/types/app";
 
 export const TITLE = "[LASTCHAN]";
 
+export const FAVICON = "/images/crystal.png";
+
 export const PAGES: Pages = [
   {
     path: "/",
@@ -15,6 +17,5 @@ export const PAGES: Pages = [
     description: "강렬한 힘의 결정석 판매 수익 계산기",
     ad: true,
     image: "/images/crystal.png",
-    favicon: "/images/crystal.png",
   },
 ];
