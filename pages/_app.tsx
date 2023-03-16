@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 import Head from "next/head";
 import { useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
-import { PAGES, TITLE } from "@/constants/app";
+import { FAVICON, PAGES, TITLE } from "@/constants/app";
 import Script from "next/script";
 import AppLayout from "@/components/templates/app";
 
@@ -32,7 +32,7 @@ export default function App(props: AppProps) {
         <meta property={"og:title"} content={page?.title} />
         <meta property={"og:description"} content={page?.description} />
         <meta property={"og:image"} content={page?.image} />
-        <link rel="icon" href={page?.favicon} type="image/png" />
+        <link rel="icon" href={FAVICON} type="image/png" />
         <title>{TITLE + " " + (page?.title ?? "")}</title>
       </Head>
       <AppLayout {...props} />
