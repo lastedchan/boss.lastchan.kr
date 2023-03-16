@@ -30,7 +30,7 @@ export default function TextareaModal({ title, defaultValue, submit }: Props) {
           </Typography>
           <FormGroup>
             <FormControl>
-              <TextField multiline maxRows={10} value={input} onChange={e => setInput(e.currentTarget.value)} />
+              <TextField value={input} onChange={e => setInput(e.currentTarget.value)} />
             </FormControl>
           </FormGroup>
           <ButtonGroup fullWidth>
