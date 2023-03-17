@@ -10,8 +10,8 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
     components: {
       MuiInputBase: {
         styleOverrides: {
-          root: { margin: 4, fontSize: "0.916666rem" },
-          input: { padding: "12px 10px", backgroundColor: "#fff" },
+          root: { margin: 4, backgroundColor: "#fff", fontSize: "0.916666rem" },
+          input: { padding: "12px 10px" },
         },
       },
       MuiButton: {

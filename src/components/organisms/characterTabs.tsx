@@ -4,10 +4,10 @@ import { MouseEvent, useEffect, useState } from "react";
 import useCharacterList from "@/hooks/useCharacterList";
 import CharacterContextMenu from "@/components/molecules/characterContextMenu";
 import { inRange, isNumber } from "lodash";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { characterListRecoil } from "@/recoils/clearboard";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import CreateCharacterModal from "@/components/molecules/createCharacterModal";
 
 export default function CharacterTabs() {
   const { idx, setIdx, addCharacter } = useCharacterList();
@@ -16,7 +16,7 @@ export default function CharacterTabs() {
   const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (characterList.length === 0) addCharacter();
+    if (characterList.length === 0) addCharacter("캐릭터 1");
   }, [addCharacter, characterList.length]);
 
   if (!inRange(idx, 0, characterList.length)) return null;
@@ -31,32 +31,9 @@ export default function CharacterTabs() {
     <Box>
       <BossTabs value={idx} onChange={(e, v) => isNumber(v) && v >= 0 && setIdx(v)} variant={"scrollable"} sx={{ gridColumn: "1 / -1" }}>
         {characterList.map((item, i) => (
-          <BossTab
-            key={item.id}
-            data-idx={i}
-            label={
-              <>
-                <Typography>{item.name}</Typography>
-                <MoreVertIcon
-                  onClick={openContextMenu}
-                  sx={{ ml: 1, pointerEvents: "none", ".Mui-selected > &": { pointerEvents: "all" } }}
-                />
-              </>
-            }
-            value={i}
-            sx={{ width: "auto" }}
-            onContextMenu={openContextMenu}
-          />
+          <BossTab key={item.id} data-idx={i} label={item.name} value={i} sx={{ width: "auto" }} onContextMenu={openContextMenu} />
         ))}
-        <BossTab
-          label={"+"}
-          value={null}
-          sx={{ width: "auto" }}
-          onClick={() => {
-            const name = prompt("캐릭터 이름을 입력해주세요.", `캐릭터 ${characterList.length + 1}`);
-            name && addCharacter(name);
-          }}
-        />
+        <CreateCharacterModal />
       </BossTabs>
       <CharacterContextMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
     </Box>

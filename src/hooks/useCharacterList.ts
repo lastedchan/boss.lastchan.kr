@@ -3,6 +3,7 @@ import { characterListRecoil, isRebootRecoil, selectedCharacter } from "@/recoil
 import { useCallback, useEffect, useMemo } from "react";
 import { changeArray } from "@/libs/helpers";
 import { BOSS_LIST } from "@/constants/boss";
+import { SelectedBoss } from "@/types/crystalCalc";
 
 export default function useCharacterList() {
   const isReboot = useRecoilValue(isRebootRecoil);
@@ -17,8 +18,36 @@ export default function useCharacterList() {
   }, [characterList.length, idx, setIdx]);
 
   const addCharacter = useCallback(
-    (name?: string) => {
-      setCharacterList(prev => [...prev, { id: +new Date(), name: name || `캐릭터 ${characterList.length + 1}`, boss: [] }]);
+    (name: string, preset?: number) => {
+      if (!name.trim().length) return alert("캐릭터명을 입력해주세요.");
+      let boss: SelectedBoss[] = [];
+      if (preset) {
+        if (preset >= 1) {
+          boss = [
+            { name: "자쿰", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "매그너스", difficulty: "hard", selected: true, headcount: 1, clear: false },
+            { name: "힐라", difficulty: "hard", selected: true, headcount: 1, clear: false },
+            { name: "파풀라투스", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "피에르", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "반반", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "블러디퀸", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "벨룸", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "핑크빈", difficulty: "chaos", selected: true, headcount: 1, clear: false },
+            { name: "시그너스", difficulty: "normal", selected: true, headcount: 1, clear: false },
+          ];
+          if (preset >= 2) {
+            boss = [
+              ...boss,
+              { name: "스우", difficulty: "normal", selected: true, headcount: 1, clear: false },
+              { name: "데미안", difficulty: "normal", selected: true, headcount: 1, clear: false },
+            ];
+            if (preset >= 3) {
+              boss = [...boss, { name: "가디언 엔젤 슬라임", difficulty: "normal", selected: true, headcount: 1, clear: false }];
+            }
+          }
+        }
+      }
+      setCharacterList(prev => [...prev, { id: +new Date(), name: name, boss: boss }]);
       setIdx(characterList.length);
     },
     [characterList.length, setCharacterList, setIdx]
