@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Button, ButtonGroup, Divider, FormControl, FormGroup, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Divider, FormControl, FormGroup, Modal, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 
 type Props = {
@@ -23,17 +23,26 @@ export default function TextareaModal({ title, defaultValue, submit }: Props) {
         <Container>
           <Typography>{title}</Typography>
           <Divider sx={{ m: "8px 0" }} />
-          <Typography>
-            * 기존에 설정했던 데이터는 모두 초기화됩니다. 필요한 경우 미리 내보내기해주세요.
-            <br />* 데이터를 잘못 가져올 경우 계산기에 오류가 발생할 수 있습니다.
-            <br />* 오류 발생 시 전체 초기화 후 진행하거나, 다시 가져오기를 진행해주세요.
-          </Typography>
-          <FormGroup>
+          <Typography mb={0.5}>* 기존에 설정했던 데이터는 모두 초기화됩니다. 필요한 경우 미리 내보내기해주세요.</Typography>
+          <Typography mb={0.5}>* 데이터를 잘못 가져올 경우 계산기에 오류가 발생할 수 있습니다.</Typography>
+          <Typography>* 오류 발생 시 전체 초기화 후 진행하거나, 다시 가져오기를 진행해주세요.</Typography>
+          <FormGroup sx={{ m: "16px 0" }}>
             <FormControl>
-              <TextField value={input} onChange={e => setInput(e.currentTarget.value)} />
+              <TextField
+                multiline
+                rows={5}
+                value={input}
+                onChange={e => setInput(e.currentTarget.value)}
+                sx={{
+                  "& > .MuiInputBase-root": {
+                    bgcolor: "#fff",
+                    color: "#000",
+                  },
+                }}
+              />
             </FormControl>
           </FormGroup>
-          <ButtonGroup fullWidth>
+          <Box display={"flex"} justifyContent={"space-between"} sx={{ gap: 0.5, "& > .MuiButton-root": { flex: 1 } }}>
             <Button
               onClick={() => {
                 submit(input);
@@ -43,7 +52,7 @@ export default function TextareaModal({ title, defaultValue, submit }: Props) {
               가져오기
             </Button>
             <Button onClick={() => setOpen(false)}>닫기</Button>
-          </ButtonGroup>
+          </Box>
         </Container>
       </Modal>
     </>
@@ -59,7 +68,8 @@ const Container = styled(Box)`
   padding: 16px;
   width: 100%;
   max-width: 320px;
-  background: #fff;
+  background: #222;
   border-radius: 8px;
+  color: #fff;
   transform: translateY(-50%);
 `;
