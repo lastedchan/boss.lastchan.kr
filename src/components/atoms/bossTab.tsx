@@ -6,6 +6,7 @@ export default function BossTab(props: TabProps) {
 }
 
 const Item = styled(Tab)`
+  flex-direction: row;
   padding: 3px 8px;
   min-width: unset;
   min-height: unset;

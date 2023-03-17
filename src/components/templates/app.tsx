@@ -10,14 +10,8 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
     components: {
       MuiInputBase: {
         styleOverrides: {
-          root: {
-            margin: 4,
-            fontSize: "0.916666rem",
-          },
-          input: {
-            padding: "12px 10px",
-            backgroundColor: "#fff",
-          },
+          root: { margin: 4, fontSize: "0.916666rem" },
+          input: { padding: "12px 10px", backgroundColor: "#fff" },
         },
       },
       MuiButton: {
@@ -51,17 +45,11 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
         },
       },
       MuiDivider: {
-        styleOverrides: {
-          root: {
-            borderColor: "rgba(127,127,127,0.3)",
-          },
-        },
+        styleOverrides: { root: { borderColor: "rgba(127,127,127,0.3)" } },
       },
       MuiSwitch: {
         styleOverrides: {
-          thumb: {
-            background: "linear-gradient(to top, #fff 25%, #ccc) content-box",
-          },
+          thumb: { background: "linear-gradient(to top, #fff 25%, #ccc) content-box" },
           track: { background: "#999" },
           switchBase: {
             "&.Mui-checked+.MuiSwitch-track": {
@@ -93,17 +81,30 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
           },
         },
       },
+      MuiMenu: {
+        styleOverrides: {
+          paper: {
+            borderRadius: "0 0 4px 4px / 0 0 4px 4px !important",
+            backgroundColor: "#444 !important",
+          },
+        },
+      },
       MuiMenuItem: {
         styleOverrides: {
           root: {
             padding: "4px",
             minHeight: "unset",
             fontSize: "0.75rem",
-            background: "#444",
             color: "#fff",
             "&.Mui-selected, &.Mui-selected:hover, &:hover": { background: "#222" },
           },
         },
+      },
+      MuiList: {
+        styleOverrides: { root: { padding: 0 } },
+      },
+      MuiListItemIcon: {
+        styleOverrides: { root: { color: "#fff" } },
       },
     },
   });
