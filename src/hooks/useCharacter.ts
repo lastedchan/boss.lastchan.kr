@@ -61,8 +61,8 @@ export default function useCharacter(idx: number) {
   const setHeadcount = useCallback(
     (difficulty: string, name: string, headcount: number) => {
       if (!inRange(headcount, 1, 7)) {
-        alert("1부터 6 사이의 수를 입력해주세요.");
-        return null;
+        // alert("1부터 6 사이의 수를 입력해주세요.");
+        return false;
       }
       const idx = character?.boss.findIndex(item => item.difficulty === difficulty && item.name === name);
       setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, idx, { ...prev.boss[idx], headcount: headcount }) }));

@@ -17,16 +17,17 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
       MuiButton: {
         styleOverrides: {
           root: {
-            margin: "4px",
+            minWidth: "auto",
             border: "1px solid transparent",
             borderRadius: 8,
             background: "linear-gradient(to top, #790, #cd4) padding-box, linear-gradient(to top, #ab3, #ee8) border-box",
             boxShadow: "-1px 4px #560, 1px 4px #560, -1px 2px #560, 1px 2px #560",
             alignItems: "center",
+            lineHeight: 1.5,
             color: "#fff",
             fontWeight: "bold",
             fontSize: "1.2rem",
-            transform: "translateY(-2px)",
+            transform: "translateY(0)",
             transition:
               "background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
             "&:hover": {
@@ -39,7 +40,7 @@ export default function AppLayout({ Component, pageProps }: AppProps) {
             },
             "&:active": {
               boxShadow: "-1px 2px #560, 1px 2px #560, -1px 0 #560, 1px 0 #560",
-              transform: "translateY(0)",
+              transform: "translateY(2px)",
             },
           },
         },

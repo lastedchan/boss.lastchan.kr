@@ -1,5 +1,5 @@
 import { Boss } from "@/types/boss";
-import { Box, ListItem, ListItemText, Typography } from "@mui/material";
+import { Box, Button, ListItem, ListItemText, Typography } from "@mui/material";
 import BossIcon from "@/components/atoms/bossIcon";
 import styled from "@emotion/styled";
 import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
@@ -9,7 +9,6 @@ import { BOSS_IMAGES } from "@/constants/boss";
 import useCharacter from "@/hooks/useCharacter";
 import useCharacterList from "@/hooks/useCharacterList";
 import { PanelType } from "@/types/crystalCalc";
-import HeadcountItem from "@/components/atoms/headcountItem";
 
 type Props = {
   i: number;
@@ -19,7 +18,7 @@ type Props = {
 
 export default function BossItem({ i, type, boss }: Props) {
   const { idx } = useCharacterList();
-  const { selectedList, clearList } = useCharacter(idx);
+  const { selectedList, clearList, setHeadcount } = useCharacter(idx);
   const isReboot = useRecoilValue(isRebootRecoil);
 
   const period = useRecoilValue(selectedType);
@@ -36,24 +35,38 @@ export default function BossItem({ i, type, boss }: Props) {
       <BossName role={"boss-name"}>
         <BossIcon src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} />
         <ListItemText sx={{ ml: 0.75 }}>
-          <Box display={"flex"}>
+          <Box display={"flex"} justifyContent={"space-between"}>
             <Typography overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
               {boss.name}
             </Typography>
             {selectedItem && (
-              <Typography flex={"0 0 32px"} textAlign={"right"}>
-                ({selectedItem.headcount + "인"})
-              </Typography>
+              <Box flex={"0 0 68px"} display={"flex"} gap={0.5}>
+                <Button
+                  sx={{ flex: 1, p: 0, borderRadius: 1.5, lineHeight: 1 }}
+                  onClick={() => setHeadcount(selectedItem.difficulty, selectedItem.name, selectedItem.headcount - 1)}
+                >
+                  -
+                </Button>
+                <Typography flex={"0 0 24px"} display={"flex"} justifyContent={"center"} alignItems={"center"}>
+                  {selectedItem.headcount + "인"}
+                </Typography>
+                <Button
+                  sx={{ flex: 1, p: 0, borderRadius: 1.5, lineHeight: 1 }}
+                  onClick={() => setHeadcount(selectedItem.difficulty, selectedItem.name, selectedItem.headcount + 1)}
+                >
+                  +
+                </Button>
+              </Box>
             )}
           </Box>
         </ListItemText>
       </BossName>
       <DifficultyItem role={"difficulty-item"}>
-        {type === "headcount"
-          ? selectedItem && <HeadcountItem item={selectedItem} />
-          : boss.difficulty
-              .filter(_ => _.period === period)
-              .map(item => <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />)}
+        {boss.difficulty
+          .filter(_ => _.period === period)
+          .map(item => (
+            <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />
+          ))}
       </DifficultyItem>
       <Box display={"flex"} p={"0 4px"} justifyContent={"flex-end"}>
         <Typography role={"number"} flex={1} sx={{ opacity: clear ? 1 : 0.38 }}>
@@ -72,7 +85,7 @@ export default function BossItem({ i, type, boss }: Props) {
 const Item = styled(ListItem)`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(75px, 176px) minmax(84px, 1fr) 100px;
+  grid-template-columns: minmax(75px, 216px) minmax(84px, 1fr) 100px;
   padding: 0;
   width: 100%;
   min-height: 35px;

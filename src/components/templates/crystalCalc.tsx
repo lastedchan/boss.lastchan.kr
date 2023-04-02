@@ -27,12 +27,11 @@ export default function CrystalCalc() {
       >
         <BossTabs variant={"fullWidth"} value={tab} onChange={(e, v) => setTab(v)} sx={{ flex: "0 0 auto", mb: 1 }}>
           <BossTab label={"보스 선택"} value={"select"} />
-          <BossTab label={"인원 설정"} value={"headcount"} />
           <BossTab label={"클리어 현황"} value={"clear"} />
           <BossTab label={"결산"} value={"summary"} />
           <BossTab label={<SettingsIcon />} value={"settings"} sx={{ flex: "0 auto" }} />
         </BossTabs>
-        {["select", "headcount", "clear"].find(_ => _ === tab) && <CharacterTabs />}
+        {["select", "clear"].find(_ => _ === tab) && <CharacterTabs />}
         <Wrapper>
           <TabPanel tab={["select", "headcount", "clear"]} value={tab}>
             <BossPanel type={tab as PanelType} />
