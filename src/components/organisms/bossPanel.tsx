@@ -35,7 +35,7 @@ export default function BossPanel({ type }: Props) {
             flex: "0 0 auto",
             display: "grid",
             gridAutoFlow: "column",
-            gridTemplateColumns: "minmax(75px, 176px) minmax(84px, 1fr) 100px",
+            gridTemplateColumns: "minmax(76px, 216px) minmax(84px, 1fr) 100px",
           }}
         >
           <Typography pl={1}>보스</Typography>

@@ -1,5 +1,5 @@
-import BossMove from "@/components/organisms/bossMove";
+import BossInfo from "@/components/organisms/bossInfo";
 
 export default function BossIndex() {
-  return <BossMove />;
+  return <BossInfo />;
 }

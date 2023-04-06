@@ -9,7 +9,7 @@ type Props = {
   setIdx: Dispatch<SetStateAction<number>>;
 };
 
-export default function MoveBossItem({ i, idx, setIdx }: Props) {
+export default function BossInfoListItem({ i, idx, setIdx }: Props) {
   return (
     <Item
       role={"boss-item"}
@@ -33,7 +33,7 @@ export default function MoveBossItem({ i, idx, setIdx }: Props) {
 
 const Item = styled(ListItem)`
   flex: 0 0 30px;
-  margin: 0 auto;
   width: 135px;
   height: 30px;
+  cursor: pointer;
 `;

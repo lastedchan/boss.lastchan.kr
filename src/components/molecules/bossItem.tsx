@@ -5,7 +5,6 @@ import styled from "@emotion/styled";
 import BossDifficultyItem from "@/components/atoms/bossDifficultyItem";
 import { useRecoilValue } from "recoil";
 import { isRebootRecoil, selectedType } from "@/recoils/clearboard";
-import { BOSS_IMAGES } from "@/constants/boss";
 import useCharacter from "@/hooks/useCharacter";
 import useCharacterList from "@/hooks/useCharacterList";
 import { PanelType } from "@/types/crystalCalc";
@@ -33,7 +32,7 @@ export default function BossItem({ i, type, boss }: Props) {
   return (
     <Item>
       <BossName role={"boss-name"}>
-        <BossIcon src={BOSS_IMAGES.PATHNAME + i + BOSS_IMAGES.ICON} />
+        <BossIcon i={i} />
         <ListItemText sx={{ ml: 0.75 }}>
           <Box display={"flex"} justifyContent={"space-between"}>
             <Typography overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
