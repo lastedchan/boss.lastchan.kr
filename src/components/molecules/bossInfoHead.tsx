@@ -12,7 +12,7 @@ export default function BossInfoHead({ setOpen }: Props) {
     <Container>
       <BossHead sx={{ justifyContent: "center" }}>BOSS INFO</BossHead>
       <IconButton
-        onClick={() => setOpen(false)}
+        onClick={() => setOpen && setOpen(false)}
         sx={{ position: "absolute", top: 0, bottom: 0, right: 8, p: 0, pt: 0.5, color: "#fff", fontSize: 16, zIndex: 10 }}
       >
         X
