@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { FAVICON, PAGES, THUMBNAIL, TITLE } from "@/constants/app";
 import Script from "next/script";
 import AppLayout from "@/components/templates/app";
+import { GA_TRACKING_ID } from "@/libs/gtag";
 
 export default function App(props: AppProps) {
   const router = useRouter();
@@ -27,6 +28,20 @@ export default function App(props: AppProps) {
           crossOrigin="anonymous"
         />
       )}
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
+      />
       <Head>
         <meta name={"viewport"} content={"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"} />
         <meta property={"og:title"} content={page?.title} />
