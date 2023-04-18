@@ -28,6 +28,7 @@ export default function App(props: AppProps) {
           crossOrigin="anonymous"
         />
       )}
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
       <Script
         id="gtag-init"
         strategy="afterInteractive"
