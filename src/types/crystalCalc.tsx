@@ -10,4 +10,4 @@ export type SelectedBoss = {
 export type Character = { id: number; name: string; boss: SelectedBoss[] };
 export type CharacterList = Character[];
 
-export type PanelType = "select" | "headcount" | "clear";
+export type PanelType = "select" | "headcount" | "clear" | "none";

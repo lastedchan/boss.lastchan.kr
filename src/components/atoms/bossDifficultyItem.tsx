@@ -2,25 +2,18 @@ import { BOSS_DIFFICULTY_STYLE } from "@/constants/boss";
 import { Box, Chip } from "@mui/material";
 import { CLEARBOARD } from "@/constants/clearboard";
 import Image from "next/image";
-import { Boss, BossDifficulty } from "@/types/boss";
-import useCharacterList from "@/hooks/useCharacterList";
-import useCharacter from "@/hooks/useCharacter";
-import { PanelType } from "@/types/crystalCalc";
+import { BossDifficulty, Difficulty } from "@/types/boss";
 
 type Props = {
-  type: PanelType;
-  boss: Boss;
+  selected: boolean;
+  checked?: boolean;
+  disabled?: boolean;
+  bossName?: string;
   difficulty: BossDifficulty;
+  onClick?: (difficulty: Difficulty, name: string) => void;
 };
 
-export default function BossDifficultyItem({ type, boss, difficulty }: Props) {
-  const { idx } = useCharacterList();
-  const { selectedList, clearList, toggleSelected, toggleClear } = useCharacter(idx);
-
-  const selected = !!selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
-  const checked = selected && !!clearList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
-  const disabled = type === "clear" && !selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
-
+export default function BossDifficultyItem({ selected, checked, disabled, bossName, difficulty, onClick }: Props) {
   if (disabled) return null;
 
   return (
@@ -38,7 +31,7 @@ export default function BossDifficultyItem({ type, boss, difficulty }: Props) {
           "& span": { padding: 0 },
           "&:hover": { textShadow: `0 0 4px ${BOSS_DIFFICULTY_STYLE[difficulty.difficulty].color}` },
         }}
-        onClick={() => (type === "select" ? toggleSelected : toggleClear)(difficulty.difficulty, boss.name)}
+        onClick={() => onClick && onClick(difficulty.difficulty, bossName ?? "")}
         disabled={disabled}
       />
       {checked ? (

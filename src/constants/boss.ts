@@ -76,7 +76,20 @@ export const BOSS_LIST: BossList = [
     difficulty: [
       { difficulty: "easy", period: "day", price: 432605 },
       { difficulty: "normal", period: "day", price: 1553066 },
-      { difficulty: "hard", period: "week", price: 11579023 },
+      {
+        difficulty: "hard",
+        period: "week",
+        price: 11579023,
+        info: {
+          entranceLevel: 175,
+          level: 190,
+          hp: 120000000000,
+          physicalDefence: "120%",
+          magicDefence: "120%",
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
     ],
   },
   {
@@ -183,6 +196,18 @@ export const BOSS_LIST: BossList = [
   { name: "감시자 칼로스", difficulty: [{ difficulty: "chaos", period: "week", price: 300000000 }] },
   { name: "카링", difficulty: [{ difficulty: "normal", period: "week", price: 0 }] },
 ];
+
+export const BOSS_INFO_TITLE = {
+  entranceLevel: "입장 레벨",
+  level: "레벨",
+  arcaneForce: "아케인 포스",
+  authenticForce: "어센틱 포스",
+  hp: "HP",
+  physicalDefence: "물리 방어",
+  magicDefence: "마법 방어",
+  deathCount: "데스 카운트",
+  timeLimitM: "제한 시간(분)",
+};
 
 export const ORDER_BOSS = [14, 0, 1, 10, 3, 21, 22, 4, 5, 6, 7, 8, 2, 9, 11, 12, 13, 15, 29, 19, 23, 26, 24, 27, 25, 28, 30, 31];
 export const BOSS_DIFFICULTY_LABEL = ["easy", "normal", "hard", "chaos", "extreme"];

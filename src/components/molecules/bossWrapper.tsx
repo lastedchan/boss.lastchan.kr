@@ -19,7 +19,7 @@ const Container = styled(Box)`
     linear-gradient(to bottom, transparent 8px, #777 32px, #777 calc(100% - 32px), transparent calc(100% - 8px)) border-box,
     linear-gradient(to bottom, transparent, #222 calc(100% - 1px), #222) border-box,
     linear-gradient(to left, transparent 8px, #777 32px, #777 calc(100% - 32px), transparent calc(100% - 8px)) border-box;
-  overflow: hidden;
+  overflow: auto hidden;
 `;
 
 const Wrapper = styled(List)`
@@ -27,6 +27,7 @@ const Wrapper = styled(List)`
   flex-direction: column;
   padding: 0;
   width: 100%;
+  min-width: 360px;
   max-height: 100%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;

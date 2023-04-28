@@ -17,7 +17,7 @@ type Props = {
 
 export default function BossItem({ i, type, boss }: Props) {
   const { idx } = useCharacterList();
-  const { selectedList, clearList, setHeadcount } = useCharacter(idx);
+  const { selectedList, clearList, setHeadcount, toggleSelected, toggleClear } = useCharacter(idx);
   const isReboot = useRecoilValue(isRebootRecoil);
 
   const period = useRecoilValue(selectedType);
@@ -63,9 +63,24 @@ export default function BossItem({ i, type, boss }: Props) {
       <DifficultyItem role={"difficulty-item"}>
         {boss.difficulty
           .filter(_ => _.period === period)
-          .map(item => (
-            <BossDifficultyItem key={item.difficulty} type={type} boss={boss} difficulty={item} />
-          ))}
+          .map(difficulty => {
+            const selected = !!selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+            const checked = selected && !!clearList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+            const disabled =
+              type === "clear" && !selectedList?.find(item => item.difficulty === difficulty.difficulty && item.name === boss.name);
+
+            return (
+              <BossDifficultyItem
+                key={difficulty.difficulty}
+                selected={selected}
+                checked={checked}
+                disabled={disabled}
+                bossName={boss.name}
+                difficulty={difficulty}
+                onClick={type === "select" ? toggleSelected : toggleClear}
+              />
+            );
+          })}
       </DifficultyItem>
       <Box display={"flex"} p={"0 4px"} justifyContent={"flex-end"}>
         <Typography role={"number"} flex={1} sx={{ opacity: clear ? 1 : 0.38 }}>

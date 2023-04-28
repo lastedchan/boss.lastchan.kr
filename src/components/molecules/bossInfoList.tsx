@@ -67,6 +67,7 @@ const Container = styled(Box)`
   height: 100%;
   background-color: #333;
   transition: width 0.5s;
+  z-index: 10;
 `;
 
 const Wrapper = styled.div`
