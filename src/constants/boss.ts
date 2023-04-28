@@ -194,7 +194,7 @@ export const BOSS_LIST: BossList = [
     ],
   },
   { name: "감시자 칼로스", difficulty: [{ difficulty: "chaos", period: "week", price: 300000000 }] },
-  { name: "카링", difficulty: [{ difficulty: "normal", period: "week", price: 0 }] },
+  { name: "카링", difficulty: [{ difficulty: "normal", period: "week", price: 350000000 }] },
 ];
 
 export const BOSS_INFO_TITLE = {

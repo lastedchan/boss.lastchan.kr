@@ -17,10 +17,9 @@ export default function BossInfo({ initIdx, setOpen }: Props) {
   useEffect(() => {
     const onresize = () => {
       setScale(Math.min(window.innerWidth / 472, 1));
-      console.log(window.innerWidth, window.outerWidth, window.innerWidth / 472);
     };
-    window.addEventListener("resize", onresize);
     onresize();
+    window.addEventListener("resize", onresize);
     return () => window.removeEventListener("resize", onresize);
   }, [setScale]);
 
