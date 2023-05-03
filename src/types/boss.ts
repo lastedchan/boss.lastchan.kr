@@ -4,13 +4,16 @@ export type BossDifficulty = { difficulty: Difficulty; period: Period; price: nu
 export type Difficulty = "easy" | "normal" | "hard" | "chaos" | "extreme";
 export type Period = "week" | "month" | "day";
 export type BossInfo = {
+  phase: {
+    name?: string;
+    level: number;
+    arcaneForce?: number;
+    authenticForce?: number;
+    hp: number;
+    physicalDefence: number;
+    magicDefence: number;
+  }[];
   entranceLevel: number;
-  level: number;
-  arcaneForce?: number;
-  authenticForce?: number;
-  hp: number;
-  physicalDefence: string;
-  magicDefence: string;
   deathCount: number;
   timeLimitM: number;
 };

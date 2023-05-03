@@ -8,17 +8,89 @@ export const BOSS_LIST: BossList = [
   {
     name: "자쿰",
     difficulty: [
-      { difficulty: "easy", period: "day", price: 119835 },
-      { difficulty: "normal", period: "day", price: 366997 },
-      { difficulty: "chaos", period: "week", price: 9741285 },
+      {
+        difficulty: "easy",
+        period: "day",
+        price: 119835,
+        info: {
+          phase: [{ level: 180, hp: 2200000, physicalDefence: 100, magicDefence: 100 }],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "normal",
+        period: "day",
+        price: 366997,
+        info: {
+          phase: [{ level: 180, hp: 7000000, physicalDefence: 100, magicDefence: 100 }],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "chaos",
+        period: "week",
+        price: 9741285,
+        info: {
+          phase: [{ level: 180, hp: 84000000000, physicalDefence: 100, magicDefence: 100 }],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
     ],
   },
   {
     name: "혼테일",
     difficulty: [
-      { difficulty: "easy", period: "day", price: 528474 },
-      { difficulty: "normal", period: "day", price: 606666 },
-      { difficulty: "chaos", period: "day", price: 810086 },
+      {
+        difficulty: "easy",
+        period: "day",
+        price: 528474,
+        info: {
+          phase: [
+            { name: "혼테일의 왼쪽 머리", level: 130, hp: 100000000, physicalDefence: 0, magicDefence: 0 },
+            { name: "혼테일의 오른쪽 머리", level: 130, hp: 100000000, physicalDefence: 0, magicDefence: 0 },
+            { name: "혼테일", level: 130, hp: 817600000, physicalDefence: 0, magicDefence: 0 },
+          ],
+          entranceLevel: 130,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "normal",
+        period: "day",
+        price: 606666,
+        info: {
+          phase: [
+            { name: "혼테일의 왼쪽 머리", level: 160, hp: 330000000, physicalDefence: 0, magicDefence: 0 },
+            { name: "혼테일의 오른쪽 머리", level: 160, hp: 330000000, physicalDefence: 0, magicDefence: 0 },
+            { name: "혼테일", level: 160, hp: 2090000000, physicalDefence: 0, magicDefence: 0 },
+          ],
+          entranceLevel: 130,
+          deathCount: 5,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "chaos",
+        period: "day",
+        price: 810086,
+        info: {
+          phase: [
+            { name: "카오스 혼테일의 왼쪽 머리", level: 160, hp: 3300000000, physicalDefence: 0, magicDefence: 0 },
+            { name: "카오스 혼테일의 오른쪽 머리", level: 160, hp: 3300000000, physicalDefence: 0, magicDefence: 0 },
+            { name: "카오스 혼테일", level: 160, hp: 20000000000, physicalDefence: 0, magicDefence: 0 },
+          ],
+          entranceLevel: 135,
+          deathCount: 5,
+          timeLimitM: 30,
+        },
+      },
     ],
   },
   {
@@ -74,18 +146,35 @@ export const BOSS_LIST: BossList = [
   {
     name: "매그너스",
     difficulty: [
-      { difficulty: "easy", period: "day", price: 432605 },
-      { difficulty: "normal", period: "day", price: 1553066 },
+      {
+        difficulty: "easy",
+        period: "day",
+        price: 432605,
+        info: {
+          phase: [{ level: 110, hp: 400000000, physicalDefence: 50, magicDefence: 50 }],
+          entranceLevel: 115,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "normal",
+        period: "day",
+        price: 1553066,
+        info: {
+          phase: [{ level: 130, hp: 6000000000, physicalDefence: 50, magicDefence: 50 }],
+          entranceLevel: 155,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
       {
         difficulty: "hard",
         period: "week",
         price: 11579023,
         info: {
+          phase: [{ level: 190, hp: 120000000000, physicalDefence: 120, magicDefence: 120 }],
           entranceLevel: 175,
-          level: 190,
-          hp: 120000000000,
-          physicalDefence: "120%",
-          magicDefence: "120%",
           deathCount: 10,
           timeLimitM: 30,
         },
@@ -145,9 +234,51 @@ export const BOSS_LIST: BossList = [
   {
     name: "윌",
     difficulty: [
-      { difficulty: "easy", period: "week", price: 52139127 },
-      { difficulty: "normal", period: "week", price: 66311463 },
-      { difficulty: "hard", period: "week", price: 145038483 },
+      {
+        difficulty: "easy",
+        period: "week",
+        price: 52139127,
+        info: {
+          phase: [
+            { level: 235, hp: 5600000000000, arcaneForce: 560, physicalDefence: 300, magicDefence: 300 },
+            { level: 235, hp: 4200000000000, arcaneForce: 560, physicalDefence: 300, magicDefence: 300 },
+            { level: 235, hp: 7000000000000, arcaneForce: 560, physicalDefence: 300, magicDefence: 300 },
+          ],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "normal",
+        period: "week",
+        price: 66311463,
+        info: {
+          phase: [
+            { level: 250, hp: 8400000000000, arcaneForce: 760, physicalDefence: 300, magicDefence: 300 },
+            { level: 250, hp: 6300000000000, arcaneForce: 760, physicalDefence: 300, magicDefence: 300 },
+            { level: 250, hp: 10500000000000, arcaneForce: 760, physicalDefence: 300, magicDefence: 300 },
+          ],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "hard",
+        period: "week",
+        price: 145038483,
+        info: {
+          phase: [
+            { level: 250, hp: 42000000000000, arcaneForce: 760, physicalDefence: 300, magicDefence: 300 },
+            { level: 250, hp: 31500000000000, arcaneForce: 760, physicalDefence: 300, magicDefence: 300 },
+            { level: 250, hp: 52500000000000, arcaneForce: 760, physicalDefence: 300, magicDefence: 300 },
+          ],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
     ],
   },
   {
@@ -160,8 +291,52 @@ export const BOSS_LIST: BossList = [
   {
     name: "검은 마법사",
     difficulty: [
-      { difficulty: "hard", period: "month", price: 148112376 },
-      { difficulty: "extreme", period: "month", price: 190159452 },
+      {
+        difficulty: "hard",
+        period: "month",
+        price: 148112376,
+        info: {
+          phase: [
+            {
+              name: "창조의 아이온, 파괴의 얄다바오트",
+              level: 265,
+              hp: 63000000000000,
+              arcaneForce: 1320,
+              physicalDefence: 300,
+              magicDefence: 300,
+            },
+            { name: "검은 마법사", level: 275, hp: 115500000000000, arcaneForce: 1320, physicalDefence: 300, magicDefence: 300 },
+            { name: "검은 마법사", level: 275, hp: 157500000000000, arcaneForce: 1320, physicalDefence: 300, magicDefence: 300 },
+            { name: "검은 마법사", level: 265, hp: 140000000000000, arcaneForce: 1320, physicalDefence: 300, magicDefence: 300 },
+          ],
+          entranceLevel: 255,
+          deathCount: 12,
+          timeLimitM: 60,
+        },
+      },
+      {
+        difficulty: "extreme",
+        period: "month",
+        price: 190159452,
+        info: {
+          phase: [
+            {
+              name: "창조의 아이온, 파괴의 얄다바오트",
+              level: 275,
+              hp: 1260000000000000,
+              arcaneForce: 1320,
+              physicalDefence: 300,
+              magicDefence: 300,
+            },
+            { name: "검은 마법사", level: 280, hp: 1470000000000000, arcaneForce: 1320, physicalDefence: 300, magicDefence: 300 },
+            { name: "검은 마법사", level: 280, hp: 1575000000000000, arcaneForce: 1320, physicalDefence: 300, magicDefence: 300 },
+            { name: "검은 마법사", level: 280, hp: 1680000000000000, arcaneForce: 1320, physicalDefence: 300, magicDefence: 300 },
+          ],
+          entranceLevel: 255,
+          deathCount: 12,
+          timeLimitM: 60,
+        },
+      },
     ],
   },
   {

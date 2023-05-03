@@ -18,7 +18,7 @@ export function toLocaleString(value: number) {
   let i = 0;
   while (v.length) {
     const _ = v.slice(-4);
-    res = (Number(_) > 0 ? _ + arr[i] : "") + res;
+    res = (Number(_) > 0 ? _ + arr[i] + (res.length ? " " : "") : "") + res;
 
     v = v.slice(0, -4);
     i++;
