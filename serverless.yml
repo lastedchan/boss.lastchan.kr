@@ -1,0 +1,5 @@
+myNextApplication:
+  component: '@sls-next/serverless-component@latest'
+  inputs:
+    bucketRegion: ${{ secrets.AWS_REGION }}
+    bucketName: ${{ AWS_S3_BUCKET_NAME }}
