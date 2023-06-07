@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { Box, Button, Divider, FormControl, FormGroup, Modal, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { wait } from "next/dist/build/output/log";
+import { sleep } from "@/libs/helpers";
 
 type Props = {
   title: string;
@@ -10,15 +12,23 @@ type Props = {
 
 export default function TextareaModal({ title, defaultValue, submit }: Props) {
   const [open, setOpen] = useState(false);
-  const [input, setInput] = useState<string>(defaultValue ?? "");
+  const [value, setValue] = useState<string>(defaultValue ?? "");
+
+  const input = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setInput("");
+    setValue("");
   }, [open]);
+
+  const _open = async () => {
+    setOpen(true);
+    await sleep(10);
+    input.current?.focus();
+  };
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>{title}</Button>
+      <Button onClick={_open}>{title}</Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <Container>
           <Typography>{title}</Typography>
@@ -29,10 +39,11 @@ export default function TextareaModal({ title, defaultValue, submit }: Props) {
           <FormGroup sx={{ m: "16px 0" }}>
             <FormControl>
               <TextField
+                inputRef={input}
                 multiline
                 rows={5}
-                value={input}
-                onChange={e => setInput(e.currentTarget.value)}
+                value={value}
+                onChange={e => setValue(e.currentTarget.value)}
                 sx={{
                   "& > .MuiInputBase-root": {
                     bgcolor: "#fff",
@@ -45,7 +56,7 @@ export default function TextareaModal({ title, defaultValue, submit }: Props) {
           <Box display={"flex"} justifyContent={"space-between"} sx={{ gap: 0.5, "& > .MuiButton-root": { flex: 1 } }}>
             <Button
               onClick={() => {
-                submit(input);
+                submit(value);
                 setOpen(false);
               }}
             >

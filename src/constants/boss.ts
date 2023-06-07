@@ -13,8 +13,8 @@ export const BOSS_LIST: BossList = [
         period: "day",
         price: 119835,
         info: {
-          phase: [{ level: 180, hp: 2200000, physicalDefence: 100, magicDefence: 100 }],
-          entranceLevel: 235,
+          phase: [{ level: 50, hp: 2200000, physicalDefence: 100, magicDefence: 100 }],
+          entranceLevel: 50,
           deathCount: 10,
           timeLimitM: 30,
         },
@@ -24,8 +24,8 @@ export const BOSS_LIST: BossList = [
         period: "day",
         price: 366997,
         info: {
-          phase: [{ level: 180, hp: 7000000, physicalDefence: 100, magicDefence: 100 }],
-          entranceLevel: 235,
+          phase: [{ level: 110, hp: 7000000, physicalDefence: 100, magicDefence: 100 }],
+          entranceLevel: 90,
           deathCount: 10,
           timeLimitM: 30,
         },
@@ -36,7 +36,7 @@ export const BOSS_LIST: BossList = [
         price: 9741285,
         info: {
           phase: [{ level: 180, hp: 84000000000, physicalDefence: 100, magicDefence: 100 }],
-          entranceLevel: 235,
+          entranceLevel: 90,
           deathCount: 10,
           timeLimitM: 30,
         },
@@ -96,8 +96,28 @@ export const BOSS_LIST: BossList = [
   {
     name: "힐라",
     difficulty: [
-      { difficulty: "normal", period: "day", price: 479343 },
-      { difficulty: "hard", period: "week", price: 6936489 },
+      {
+        difficulty: "normal",
+        period: "day",
+        price: 479343,
+        info: {
+          phase: [{ level: 110, hp: 500000000, physicalDefence: 50, magicDefence: 50 }],
+          entranceLevel: 120,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
+      {
+        difficulty: "hard",
+        period: "week",
+        price: 6936489,
+        info: {
+          phase: [{ level: 180, hp: 84000000000, physicalDefence: 100, magicDefence: 100 }],
+          entranceLevel: 235,
+          deathCount: 10,
+          timeLimitM: 30,
+        },
+      },
     ],
   },
   {
