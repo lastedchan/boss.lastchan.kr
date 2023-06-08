@@ -27,7 +27,7 @@ const Wrapper = styled(List)`
   flex-direction: column;
   padding: 0;
   width: 100%;
-  min-width: 320px;
+  min-width: 300px;
   max-height: 100%;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
