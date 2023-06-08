@@ -99,7 +99,7 @@ export default function BossItem({ i, type, boss }: Props) {
 const Item = styled(ListItem)`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(35px, 216px) minmax(84px, 1fr) 100px;
+  grid-template-columns: minmax(36px, 216px) minmax(84px, 1fr) 100px;
   padding: 0;
   width: 100%;
   min-height: 35px;
