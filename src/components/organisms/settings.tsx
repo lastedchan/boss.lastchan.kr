@@ -95,7 +95,7 @@ export default function Settings() {
         </Item>
         <Item sx={{ flex: 1 }}></Item>
         <Item>
-          <ListItemText sx={{ justifyContent: "center" }}>Copyright 2023. LASTCHAN All rights reserved.</ListItemText>
+          <ListItemText sx={{ justifyContent: "center" }}>ⓒ 2023 LASTCHAN. All rights reserved.</ListItemText>
         </Item>
       </BossWrapper>
     </Container>
