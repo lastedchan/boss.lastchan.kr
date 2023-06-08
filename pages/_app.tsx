@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import { FAVICON, PAGES, THUMBNAIL, TITLE } from "@/constants/app";
 import Script from "next/script";
 import AppLayout from "@/components/templates/app";
-import { GA_TRACKING_ID } from "@/libs/gtag";
+import * as gtag from "@/libs/gtag";
 
 export default function App(props: AppProps) {
   const router = useRouter();
@@ -19,6 +19,18 @@ export default function App(props: AppProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    const handleRouteChange = (url: any) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("hashChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("hashChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <RecoilRoot>
       {page?.ad && (
@@ -28,7 +40,7 @@ export default function App(props: AppProps) {
           crossOrigin="anonymous"
         />
       )}
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`} />
       <Script
         id="gtag-init"
         strategy="afterInteractive"
@@ -37,7 +49,7 @@ export default function App(props: AppProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
+            gtag('config', '${gtag.GA_TRACKING_ID}', {
               page_path: window.location.pathname,
             });
           `,
