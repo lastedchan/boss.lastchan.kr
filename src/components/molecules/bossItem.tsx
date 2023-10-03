@@ -38,7 +38,7 @@ export default function BossItem({ i, type, boss }: Props) {
             <Typography overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
               {boss.name}
             </Typography>
-            {selectedItem && (
+            {type === "select" && selectedItem && (
               <Box flex={"0 0 68px"} display={"flex"} gap={0.5}>
                 <Button
                   sx={{ flex: 1, p: 0, borderRadius: 1.5, lineHeight: 1 }}
@@ -99,7 +99,7 @@ export default function BossItem({ i, type, boss }: Props) {
 const Item = styled(ListItem)`
   display: grid;
   grid-auto-flow: column;
-  grid-template-columns: minmax(36px, 216px) minmax(84px, 1fr) 100px;
+  grid-template-columns: minmax(36px, 168px) minmax(84px, 1fr) 100px;
   padding: 0;
   width: 100%;
   min-height: 35px;
