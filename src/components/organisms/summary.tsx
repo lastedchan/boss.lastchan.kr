@@ -13,7 +13,7 @@ export default function Summary() {
   const { totalAmount, soldAmount, totalPrice, soldPrice } = useCharacterList();
 
   return (
-    <Box flex={1} display={"flex"} flexDirection={"column"} gap={1}>
+    <Box flex={1} display={"flex"} flexDirection={"column"} gap={1} overflow={"hidden"}>
       <BossWrapper
         flex={1}
         sx={{
@@ -24,7 +24,7 @@ export default function Summary() {
           },
         }}
       >
-        <BossHead>
+        <BossHead sx={{ position: "sticky", top: 0 }}>
           <Typography pl={0.5}>캐릭터명</Typography>
           <Typography pr={0.5} textAlign={"right"}>
             결정석
@@ -36,12 +36,14 @@ export default function Summary() {
         {characterList.map((item, i) => (
           <SummaryItem key={item.id} idx={i} />
         ))}
-        <Divider />
-        <ListItem sx={{ position: "sticky", bottom: 0, p: "8px 0" }} hidden={!characterList.length}>
-          <Typography />
-          <SummaryCrystal soldAmount={soldAmount} totalAmount={totalAmount} />
-          <SummaryMeso soldPrice={soldPrice} totalPrice={totalPrice} />
-        </ListItem>
+        <Box sx={{ position: "sticky", bottom: 0, backgroundColor: "#222" }}>
+          <Divider />
+          <ListItem hidden={!characterList.length}>
+            <Typography />
+            <SummaryCrystal soldAmount={soldAmount} totalAmount={totalAmount} />
+            <SummaryMeso soldPrice={soldPrice} totalPrice={totalPrice} />
+          </ListItem>
+        </Box>
       </BossWrapper>
       <Box display={"flex"} gap={0.5} width={"100%"} flexWrap={"wrap"} overflow={"hidden"}>
         <List sx={{ flex: 1, p: 0 }}>
