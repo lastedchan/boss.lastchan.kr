@@ -3,7 +3,7 @@ import BossWrapper from "@/components/molecules/bossWrapper";
 import BossHead from "@/components/molecules/bossHead";
 import BossBody from "@/components/molecules/bossBody";
 import styled from "@emotion/styled";
-import { Box, Typography } from "@mui/material";
+import { Box, IconButton, Typography } from "@mui/material";
 import useIsMobile from "@/hooks/useIsMobile";
 import { CLEARBOARD } from "@/constants/clearboard";
 import BossItem from "@/components/molecules/bossItem";
@@ -12,6 +12,7 @@ import useCharacter from "@/hooks/useCharacter";
 import useCharacterList from "@/hooks/useCharacterList";
 import { PanelType } from "@/types/crystalCalc";
 import BossModal from "@/components/organisms/bossModal";
+import Image from "next/image";
 
 type Props = {
   type: PanelType;
@@ -19,7 +20,7 @@ type Props = {
 
 export default function BossPanel({ type }: Props) {
   const { idx } = useCharacterList();
-  const { totalAmount, totalPrice, soldAmount, soldPrice } = useCharacter(idx);
+  const { totalAmount, totalPrice, soldAmount, soldPrice, toggleClearAll } = useCharacter(idx);
   const isMobile = useIsMobile();
 
   if (idx === -1) return null;
@@ -39,7 +40,15 @@ export default function BossPanel({ type }: Props) {
           }}
         >
           <Typography pl={1}>보스</Typography>
-          <Typography pl={3}>난이도</Typography>
+          <Typography pl={1}>
+            <IconButton
+              onClick={toggleClearAll}
+              sx={{ height: 16, filter: totalAmount && totalAmount === soldAmount ? "" : "grayscale(1)" }}
+            >
+              <Image src={CLEARBOARD.CLEAR} alt={"CLEAR"} width={18} height={15} />
+            </IconButton>
+            난이도
+          </Typography>
           <Typography textAlign={"center"}>메소</Typography>
         </BossHead>
         <BossBody>

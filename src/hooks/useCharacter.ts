@@ -26,7 +26,11 @@ export default function useCharacter(idx: number) {
       if (selectedSameTypeIdx !== -1) {
         setCharacter(prev => ({
           ...prev,
-          boss: changeArray(prev.boss, selectedSameTypeIdx, { ...prev.boss[selectedSameTypeIdx], selected: false, clear: false }),
+          boss: changeArray(prev.boss, selectedSameTypeIdx, {
+            ...prev.boss[selectedSameTypeIdx],
+            selected: false,
+            clear: false,
+          }),
         }));
       }
 
@@ -52,7 +56,10 @@ export default function useCharacter(idx: number) {
     (difficulty: string, name: string) => {
       const idx = character?.boss.findIndex(item => item.difficulty === difficulty && item.name === name);
       if (idx !== -1) {
-        setCharacter(prev => ({ ...prev, boss: changeArray(prev.boss, idx, { ...prev.boss[idx], clear: !prev.boss[idx].clear }) }));
+        setCharacter(prev => ({
+          ...prev,
+          boss: changeArray(prev.boss, idx, { ...prev.boss[idx], clear: !prev.boss[idx].clear }),
+        }));
       }
     },
     [character?.boss, setCharacter]
@@ -73,6 +80,11 @@ export default function useCharacter(idx: number) {
 
   const totalAmount = useMemo(() => selectedList.length, [selectedList]);
   const soldAmount = useMemo(() => clearList.length, [clearList]);
+
+  const toggleClearAll = useCallback(() => {
+    const clear = totalAmount > soldAmount;
+    setCharacter(prev => ({ ...prev, boss: prev.boss.map(item => ({ ...item, clear: item.selected && clear })) }));
+  }, [setCharacter, soldAmount, totalAmount]);
 
   const totalPrice = useMemo(
     () =>
@@ -103,5 +115,17 @@ export default function useCharacter(idx: number) {
     [isReboot, clearList]
   );
 
-  return { character, selectedList, clearList, toggleSelected, toggleClear, setHeadcount, totalAmount, totalPrice, soldAmount, soldPrice };
+  return {
+    character,
+    selectedList,
+    clearList,
+    toggleSelected,
+    toggleClear,
+    setHeadcount,
+    totalAmount,
+    soldAmount,
+    toggleClearAll,
+    totalPrice,
+    soldPrice,
+  };
 }

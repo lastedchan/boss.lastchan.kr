@@ -8,6 +8,8 @@ import { Box } from "@mui/material";
 import { useRecoilValue } from "recoil";
 import { characterListRecoil } from "@/recoils/clearboard";
 import CreateCharacterModal from "@/components/molecules/createCharacterModal";
+import { CLEARBOARD } from "@/constants/clearboard";
+import Image from "next/image";
 
 export default function CharacterTabs() {
   const { idx, setIdx, addCharacter } = useCharacterList();
@@ -23,16 +25,48 @@ export default function CharacterTabs() {
 
   const openContextMenu = (e: MouseEvent<HTMLDivElement> | MouseEvent<SVGSVGElement>) => {
     e.preventDefault();
-    console.log(e.currentTarget.tagName);
     setAnchorEl((e.currentTarget.tagName === "BUTTON" ? e.currentTarget : e.currentTarget.parentElement) as HTMLDivElement);
   };
 
   return (
     <Box>
       <BossTabs value={idx} onChange={(e, v) => isNumber(v) && v >= 0 && setIdx(v)} variant={"scrollable"} sx={{ gridColumn: "1 / -1" }}>
-        {characterList.map((item, i) => (
-          <BossTab key={item.id} data-idx={i} label={item.name} value={i} sx={{ width: "auto" }} onContextMenu={openContextMenu} />
-        ))}
+        {characterList.map((item, i) => {
+          let allClear = !!item.boss.find(item => item.selected);
+          if (allClear) {
+            item.boss.forEach(item => {
+              if (item.selected && !item.clear) allClear = false;
+            });
+          }
+          return (
+            <BossTab
+              key={item.id}
+              data-idx={i}
+              label={
+                <Box pl={3}>
+                  <Image
+                    src={CLEARBOARD.CLEAR}
+                    alt={"CLEAR"}
+                    width={24}
+                    height={20}
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      bottom: 0,
+                      left: 8,
+                      margin: "auto",
+                      filter: allClear ? "" : "grayscale(1)",
+                    }}
+                  />
+                  {item.name}
+                </Box>
+              }
+              value={i}
+              sx={{ width: "auto" }}
+              onContextMenu={openContextMenu}
+            />
+          );
+        })}
         <CreateCharacterModal />
       </BossTabs>
       <CharacterContextMenu anchorEl={anchorEl} setAnchorEl={setAnchorEl} />

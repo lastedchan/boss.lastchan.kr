@@ -14,11 +14,7 @@ export default function SummaryItem({ idx }: Props) {
   const { totalAmount, totalPrice, soldAmount, soldPrice } = useCharacter(idx);
 
   return (
-    <ListItem
-      sx={{
-        p: "8px 0",
-      }}
-    >
+    <ListItem sx={{ p: "8px 0" }}>
       <Typography pl={0.5} overflow={"hidden"} whiteSpace={"nowrap"} textOverflow={"ellipsis"}>
         {character.name}
       </Typography>

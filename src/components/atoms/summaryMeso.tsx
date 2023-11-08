@@ -8,7 +8,7 @@ type Props = {
 export default function SummaryMeso({ soldPrice, totalPrice }: Props) {
   return (
     <Typography role={"number"} whiteSpace={"pre"}>
-      {soldPrice.toLocaleString()}/{totalPrice.toLocaleString().padStart(13, " ")}
+      {soldPrice.toLocaleString()}/{totalPrice.toLocaleString().padStart(14, " ")}
     </Typography>
   );
 }

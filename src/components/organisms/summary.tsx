@@ -38,7 +38,7 @@ export default function Summary() {
         ))}
         <Box sx={{ position: "sticky", bottom: 0, backgroundColor: "#222" }}>
           <Divider />
-          <ListItem hidden={!characterList.length}>
+          <ListItem hidden={!characterList.length} sx={{ p: "8px 0" }}>
             <Typography />
             <SummaryCrystal soldAmount={soldAmount} totalAmount={totalAmount} />
             <SummaryMeso soldPrice={soldPrice} totalPrice={totalPrice} />
